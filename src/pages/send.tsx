@@ -32,7 +32,12 @@ const Send: NextPage = () => {
           console.log(to, amount, name);
           send.mutate(
             { to, amount, name },
-            { onSuccess: () => router.push("/"), onError: console.log }
+            {
+              onSuccess: () => {
+                router.push("/");
+              },
+              onError: console.log,
+            }
           );
         }}
       >

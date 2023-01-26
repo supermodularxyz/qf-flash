@@ -34,6 +34,7 @@ export const useSendEvents = () => {
           [address: string]: {
             amount: number;
             funders: Set<string>;
+            lastFunded: number;
           };
         } = {};
         const events = await contract
@@ -41,27 +42,26 @@ export const useSendEvents = () => {
           .then((events) => {
             return Promise.all(
               events.map(async (e) => {
-                console.log(e);
                 const { amount, from, to, data } = e.args;
                 const name = parseBytes32String(data);
+                const block = await wallet?.provider.getBlock(e.blockNumber);
+                const timestamp = block ? block?.timestamp * 1000 : 0;
 
                 nameByAddress[from] = name;
 
-                if (!amountByAddress[to]) amountByAddress[to] = 0;
-                if (!votesByAddress[to]) votesByAddress[to];
+                if (!projects[to])
+                  projects[to] = {
+                    amount: 0,
+                    funders: new Set(),
+                    lastFunded: 0,
+                  };
 
-                // if (!projects[to])
-                projects[to] = projects[to] || {
-                  amount: 0,
-                  funders: new Set(),
-                };
-
-                projects[to].amount = projects[to].amount += Number(amount);
-                projects[to].funders.add(from);
-                amountByAddress[to] = amountByAddress[to] += Number(amount);
-                votesByAddress[to] = from;
-
-                const block = await wallet?.provider.getBlock(e.blockNumber);
+                projects[to]!.amount = projects[to]!.amount += Number(amount);
+                projects[to]!.funders.add(from);
+                projects[to]!.lastFunded =
+                  timestamp >= projects[to]!.lastFunded
+                    ? timestamp
+                    : projects[to]!.lastFunded;
 
                 return {
                   amount: amount.toString(),
@@ -86,6 +86,7 @@ export const useSendEvents = () => {
           votesByAddress,
           projects,
           queryDuration: queryEnd - queryStart,
+          lastUpdated: queryEnd,
         };
       });
     },
