@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { Wallet, Zap } from "lucide-react";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { PropsWithChildren } from "react";
 import { Button } from "./Button";
 
@@ -34,15 +35,8 @@ export const Layout = ({ children }: PropsWithChildren) => (
         <header className="flex items-center justify-between p-1">
           <Logo />
           <div className="flex items-center gap-1 text-xs">
-            <Link
-              className="rounded p-3 hover:bg-gray-100"
-              href={`/leaderboard`}
-            >
-              Leaderboard
-            </Link>
-            <Link className="rounded p-3 hover:bg-gray-100" href={`/about`}>
-              What is this?
-            </Link>
+            <NavLink label="Leaderboard" href={`/leaderboard`} />
+            <NavLink label="What is this?" href={`/about`} />
             <Link href={`/wallet`} className="">
               <Button className="rounded-full py-2 px-2">
                 <Wallet className="h-4 w-4" />
@@ -56,3 +50,19 @@ export const Layout = ({ children }: PropsWithChildren) => (
     </main>
   </>
 );
+
+const NavLink = ({ href = "", label = "" }) => {
+  const router = useRouter();
+  console.log(router.asPath, href);
+  const isActive = router.asPath === href;
+  return (
+    <Link
+      className={clsx("rounded p-3 hover:bg-gray-100", {
+        ["underline underline-offset-2"]: isActive,
+      })}
+      href={href}
+    >
+      {label}
+    </Link>
+  );
+};
