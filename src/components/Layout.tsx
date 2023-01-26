@@ -53,7 +53,6 @@ export const Layout = ({ children }: PropsWithChildren) => (
 
 const NavLink = ({ href = "", label = "" }) => {
   const router = useRouter();
-  console.log(router.asPath, href);
   const isActive = router.asPath === href;
   return (
     <Link

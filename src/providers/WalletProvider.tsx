@@ -21,6 +21,8 @@ const WalletContext = createContext<Context>({
 export const useWallet = () => useContext(WalletContext);
 
 const MNEMONIC_KEY = "mnemonic";
+const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_ID;
+
 export const WalletProvider = ({
   children,
   rpcUrl,
@@ -36,6 +38,10 @@ export const WalletProvider = ({
           const createWallet = (mnemonic: string) =>
             Wallet.fromMnemonic(mnemonic);
 
+          // const provider = new providers.AlchemyProvider(
+          //   "optimism-goerli",
+          //   alchemyKey
+          // );
           const provider = new providers.JsonRpcProvider(rpcUrl);
           const wallet = createWallet(mnemonic).connect(provider);
 

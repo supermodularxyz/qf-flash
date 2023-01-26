@@ -9,12 +9,16 @@ import { WalletProvider } from "providers/WalletProvider";
 
 const queryClient = new QueryClient();
 
+// http://127.0.0.1:8545
+const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL as string;
+
+console.log(rpcUrl);
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
   return (
-    <WalletProvider rpcUrl="http://127.0.0.1:8545">
+    <WalletProvider rpcUrl={rpcUrl}>
       <QueryClientProvider client={queryClient}>
         <SessionProvider session={session}>
           <Component {...pageProps} />

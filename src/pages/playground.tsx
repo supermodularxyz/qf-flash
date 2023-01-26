@@ -2,9 +2,11 @@ import { type NextPage } from "next";
 
 import Link from "next/link";
 import { Layout } from "components/Layout";
+import { Wallet } from "ethers";
+import { useEffect } from "react";
 
 const mnemonics = [
-  "life world brick wealth decade wish friend legal transfer fog surface enroll",
+  // "life world brick wealth decade wish friend legal transfer fog surface enroll",
   "bleak script drastic hungry health civil pigeon gossip announce allow roast remember",
   "top barely swim guard daughter squeeze bag fresh flat north insane rib",
   "situate nothing frame include powder palm work mammal hole ticket slab rebel",
@@ -13,6 +15,9 @@ const mnemonics = [
 ];
 
 const Playground: NextPage = () => {
+  useEffect(() => {
+    console.log(mnemonics.map((m) => Wallet.fromMnemonic(m).address));
+  }, []);
   return (
     <Layout>
       <h1 className="mb-4 text-center text-4xl">Select a wallet</h1>
