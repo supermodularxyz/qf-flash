@@ -1,4 +1,3 @@
-import { ethers } from "ethers";
 import { useEffect } from "react";
 import {
   useMemo,
@@ -9,8 +8,7 @@ import {
 } from "react";
 import { storage } from "utils/storage";
 
-const createWallet = (mnemonic: string) => ethers.Wallet.fromMnemonic(mnemonic);
-
+import type { ethers } from "ethers";
 type Context = {
   wallet: ethers.Wallet | null;
   createWallet: (m: string) => void;
@@ -34,12 +32,17 @@ export const WalletProvider = ({
   const value = useMemo(() => {
     return {
       createWallet: (mnemonic: string) => {
-        const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
-        const wallet = createWallet(mnemonic).connect(provider);
+        import("ethers").then(({ providers, Wallet }) => {
+          const createWallet = (mnemonic: string) =>
+            Wallet.fromMnemonic(mnemonic);
 
-        storage.set(MNEMONIC_KEY, mnemonic);
+          const provider = new providers.JsonRpcProvider(rpcUrl);
+          const wallet = createWallet(mnemonic).connect(provider);
 
-        setState({ wallet });
+          storage.set(MNEMONIC_KEY, mnemonic);
+
+          setState({ wallet });
+        });
       },
     };
   }, []);

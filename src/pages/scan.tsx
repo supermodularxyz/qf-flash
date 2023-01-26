@@ -1,10 +1,10 @@
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
 import { Layout } from "components/Layout";
-// import { ScanQR } from "components/ScanQR";
-import { isAddress } from "ethers/lib/utils";
 import { Input } from "components/Form";
 import dynamic from "next/dynamic";
+
+const isAddress = (address: string) => address.match(/^(0x)?[0-9a-fA-F]{40}$/);
 
 const ScanQR = dynamic(() => import("components/ScanQR"));
 const Scan: NextPage = () => {
