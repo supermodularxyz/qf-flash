@@ -6,12 +6,15 @@ import { Zap } from "lucide-react";
 import { Layout } from "components/Layout";
 import { Label } from "components/Form";
 import { Button } from "components/Button";
-import { useTokenBalance } from "hooks/useContract";
+import { useSend } from "hooks/useSend";
+import { useTokenBalance } from "hooks/useBalance";
+import { storage } from "utils/storage";
 
 const Send: NextPage = () => {
   const router = useRouter();
   const balance = useTokenBalance();
 
+  const send = useSend();
   const [amount, dispatch] = useReducer(
     (state: number, action: "inc" | "reset") =>
       action === "reset" ? 0 : state < Number(balance.data) ? state + 1 : state,
@@ -23,10 +26,14 @@ const Send: NextPage = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          const target = e.target as HTMLFormElement;
-          const { address } = Object.fromEntries(new FormData(target));
 
-          router.push("/");
+          const to = router.query.address as string;
+          const name = storage.get("name") as string;
+          console.log(to, amount, name);
+          send.mutate(
+            { to, amount, name },
+            { onSuccess: () => router.push("/"), onError: console.log }
+          );
         }}
       >
         <div className="flex flex-col gap-2">
@@ -55,7 +62,7 @@ const Send: NextPage = () => {
             </div>
           </div>
           <div className="flex justify-center">
-            <Button className="" type="submit">
+            <Button className="" type="submit" disabled={!amount}>
               Send
             </Button>
           </div>

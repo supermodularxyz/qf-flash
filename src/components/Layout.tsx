@@ -1,9 +1,27 @@
+import { useIsFetching } from "@tanstack/react-query";
+import clsx from "clsx";
 import { Wallet, Zap } from "lucide-react";
 import Head from "next/head";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 import { Button } from "./Button";
 
+const Logo = () => {
+  const isFetching = useIsFetching();
+  return (
+    <Link
+      href={"/"}
+      className="flex pl-1 text-xs font-bold tracking-widest hover:text-gray-600"
+    >
+      <Zap
+        className={clsx("mr-2 h-4 w-4 transition-colors", {
+          ["animate-ping text-yellow-500"]: isFetching,
+        })}
+      />
+      QF flash
+    </Link>
+  );
+};
 export const Layout = ({ children }: PropsWithChildren) => (
   <>
     <Head>
@@ -14,13 +32,7 @@ export const Layout = ({ children }: PropsWithChildren) => (
     <main className="text-md h-screen bg-gray-100 font-mono md:py-16">
       <div className="container mx-auto h-full max-w-md bg-white  md:rounded-xl md:shadow-2xl">
         <header className="flex items-center justify-between p-1">
-          <Link
-            href={"/"}
-            className="flex pl-3 text-xs font-bold tracking-widest hover:text-gray-600"
-          >
-            <Zap className="mr-1 h-4 w-4" />
-            QF flash
-          </Link>
+          <Logo />
           <div className="flex items-center gap-1 text-xs">
             <Link
               className="rounded p-3 hover:bg-gray-100"

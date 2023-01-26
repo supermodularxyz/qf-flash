@@ -5,14 +5,16 @@ import QRCode from "react-qr-code";
 import { P } from "components/Text";
 import { Button } from "components/Button";
 import { Layout } from "components/Layout";
-import { useTokenBalance } from "hooks/useContract";
+import { useBalance, useTokenBalance } from "hooks/useBalance";
 import { useWallet } from "providers/WalletProvider";
 
 const Home: NextPage = () => {
   const { wallet } = useWallet();
-
   const tokens = useTokenBalance();
 
+  const { data } = useBalance();
+
+  console.log("balance", data);
   return (
     <Layout>
       <h1 className="text-center uppercase tracking-widest">Welcome to the</h1>
