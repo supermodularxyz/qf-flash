@@ -1,4 +1,4 @@
-import { Wallet } from "lucide-react";
+import { Wallet, Zap } from "lucide-react";
 import Head from "next/head";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
@@ -13,11 +13,12 @@ export const Layout = ({ children }: PropsWithChildren) => (
     </Head>
     <main className="text-md h-screen bg-gray-100 font-mono md:py-16">
       <div className="container mx-auto h-full max-w-md bg-white  md:rounded-xl md:shadow-2xl">
-        <header className="flex items-center justify-between border-b border-fuchsia-600 p-1">
+        <header className="flex items-center justify-between p-1">
           <Link
             href={"/"}
-            className="pl-3 text-xs font-bold tracking-widest hover:text-gray-600"
+            className="flex pl-3 text-xs font-bold tracking-widest hover:text-gray-600"
           >
+            <Zap className="mr-1 h-4 w-4" />
             QF flash
           </Link>
           <div className="flex items-center gap-1 text-xs">
@@ -37,6 +38,7 @@ export const Layout = ({ children }: PropsWithChildren) => (
             </Link>
           </div>
         </header>
+        <div className="h-[2px] bg-gradient-to-r from-fuchsia-500 via-red-500  to-yellow-500 " />
         <div className="p-4">{children}</div>
       </div>
     </main>
