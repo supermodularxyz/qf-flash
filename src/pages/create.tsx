@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { useWallet } from "providers/WalletProvider";
-import { Layout } from "components/Layout";
+import { Layout } from "layouts/Layout";
 import { Input, Label } from "components/Form";
 import { Button } from "components/Button";
 import { storage } from "utils/storage";

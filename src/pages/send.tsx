@@ -3,7 +3,7 @@ import { type NextPage } from "next";
 import { useRouter } from "next/router";
 import { Zap } from "lucide-react";
 
-import { Layout } from "components/Layout";
+import { Layout } from "layouts/Layout";
 import { Label } from "components/Form";
 import { Button } from "components/Button";
 import { useSend } from "hooks/useSend";

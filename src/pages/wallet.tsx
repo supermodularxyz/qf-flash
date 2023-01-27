@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 
-import { Layout } from "components/Layout";
+import { Layout } from "layouts/Layout";
 import { Button } from "components/Button";
 import { useWallet } from "providers/WalletProvider";
 import { Input, Textarea } from "components/Form";

@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 
-import { Layout } from "components/Layout";
+import { Layout } from "layouts/Layout";
 import { P } from "components/Text";
 
 const About: NextPage = () => {

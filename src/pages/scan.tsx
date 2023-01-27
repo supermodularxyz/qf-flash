@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
-import { Layout } from "components/Layout";
+import { Layout } from "layouts/Layout";
 import { Input } from "components/Form";
 import dynamic from "next/dynamic";
 

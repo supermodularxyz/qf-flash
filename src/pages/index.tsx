@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 
 import { P } from "components/Text";
 import { Button } from "components/Button";
-import { Layout } from "components/Layout";
+import { Layout } from "layouts/Layout";
 import { useBalance, useTokenBalance } from "hooks/useBalance";
 import { useWallet } from "providers/WalletProvider";
 import { ArrowRight, Camera } from "lucide-react";

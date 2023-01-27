@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 
-import { Layout } from "components/Layout";
+import { Layout } from "layouts/Layout";
 import { useSendEvents } from "hooks/useSendEvents";
 import { truncate } from "utils/truncate";
 import { timeAgo } from "utils/date";

@@ -1,11 +1,11 @@
 import { useIsFetching } from "@tanstack/react-query";
 import clsx from "clsx";
+import { Button } from "components/Button";
 import { Wallet, Zap } from "lucide-react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PropsWithChildren, ReactNode } from "react";
-import { Button } from "./Button";
 
 const Logo = () => {
   const isFetching = useIsFetching();
