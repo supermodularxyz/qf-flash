@@ -9,6 +9,10 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
       <Head>
         <title>QF Flash Game</title>
         <meta name="description" content="QF Flash Game" />
+        <meta
+          name="viewport"
+          content="width=device-width, user-scalable=no"
+        ></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="h-screen bg-gray-100 font-mono text-sm md:py-16">

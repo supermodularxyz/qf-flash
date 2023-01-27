@@ -65,7 +65,7 @@ const Send: NextPage = () => {
             <button
               disabled={send.isLoading}
               type="button"
-              className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-gray-200 transition-colors hover:bg-gray-300 active:bg-gray-100"
+              className="flex h-16 w-16 cursor-pointer touch-manipulation items-center justify-center rounded-full bg-gray-200 transition-colors hover:bg-gray-300 active:bg-gray-100"
               onClick={() => dispatch("inc")}
             >
               <Zap />
