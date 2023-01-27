@@ -45,9 +45,6 @@ const Home: NextPage = () => {
   const { wallet } = useWallet();
   const tokens = useTokenBalance();
 
-  const { data } = useBalance();
-
-  console.log("balance", data);
   return (
     <Layout fab={<ScanButon />}>
       <div className="text-sm uppercase tracking-widest">Welcome to the</div>

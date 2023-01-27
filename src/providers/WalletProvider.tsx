@@ -1,66 +1,56 @@
-import { useEffect } from "react";
-import {
-  useMemo,
-  useState,
-  createContext,
-  PropsWithChildren,
-  useContext,
-} from "react";
-import { ethers } from "ethers";
+import { useCallback, useEffect } from "react";
+import { useState, createContext, PropsWithChildren, useContext } from "react";
+import { providers, Wallet } from "ethers";
 import { storage } from "utils/storage";
 
 type Context = {
-  wallet: ethers.Wallet | null;
-  createWallet: (m: string) => void;
+  wallet: Wallet | null;
+  isLoading: boolean;
 };
 const WalletContext = createContext<Context>({
-  createWallet: (m: string) => m,
   wallet: null,
+  isLoading: true,
 });
 
 export const useWallet = () => useContext(WalletContext);
 
 const MNEMONIC_KEY = "mnemonic";
-const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_ID;
 
-const createWallet = (mnemonic: string) => ethers.Wallet.fromMnemonic(mnemonic);
 export const WalletProvider = ({
   children,
   rpcUrl,
 }: { rpcUrl: string } & PropsWithChildren) => {
-  const [state, setState] = useState<{ wallet: ethers.Wallet | null }>({
+  const storedMnemonic = storage.get(MNEMONIC_KEY);
+  const [state, setState] = useState<Context>({
     wallet: null,
+    isLoading: true,
   });
 
-  const value = useMemo(() => {
-    return {
-      createWallet: (mnemonic: string) => {
-        console.time("creating wallet");
+  const createWallet = useCallback(
+    async (mnemonic: string) => {
+      console.time("creating wallet");
 
-        // const provider = new providers.AlchemyProvider(
-        //   "optimism-goerli",
-        //   alchemyKey
-        // );
-        const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
-        const wallet = createWallet(mnemonic).connect(provider);
+      const provider = new providers.JsonRpcProvider(rpcUrl);
+      const wallet = Wallet.fromMnemonic(mnemonic).connect(provider);
 
-        storage.set(MNEMONIC_KEY, mnemonic);
+      storage.set(MNEMONIC_KEY, mnemonic);
 
-        setState({ wallet });
-        console.timeEnd("creating wallet");
-      },
-    };
-  }, []);
+      console.timeEnd("creating wallet");
+      return wallet;
+    },
+    [rpcUrl]
+  );
 
-  const storedMnemonic = storage.get(MNEMONIC_KEY);
   useEffect(() => {
     if (storedMnemonic && !state.wallet) {
-      value.createWallet(storedMnemonic);
+      createWallet(storedMnemonic).then((wallet) =>
+        setState((s) => ({ isLoading: false, wallet }))
+      );
     }
+    setState((s) => ({ ...s, isLoading: false }));
   }, [storedMnemonic]);
+
   return (
-    <WalletContext.Provider value={{ ...value, ...state }}>
-      {children}
-    </WalletContext.Provider>
+    <WalletContext.Provider value={state}>{children}</WalletContext.Provider>
   );
 };
