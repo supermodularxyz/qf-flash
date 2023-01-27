@@ -64,7 +64,14 @@ export const Layout = ({
             ) : wallet ? (
               children
             ) : (
-              <Alert>no wallet found</Alert>
+              <Alert>
+                <div className="flex flex-col gap-4">
+                  <div className="text-center">No wallet found</div>
+                  <Link href={"/playground"}>
+                    <Button>Create one in Playground</Button>
+                  </Link>
+                </div>
+              </Alert>
             )}
           </div>
           <div className="absolute bottom-8 right-8">{wallet && fab}</div>
