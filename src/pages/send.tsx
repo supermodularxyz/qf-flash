@@ -9,10 +9,12 @@ import { Button } from "components/Button";
 import { useSend } from "hooks/useSend";
 import { useTokenBalance } from "hooks/useBalance";
 import { storage } from "utils/storage";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Send: NextPage = () => {
   const router = useRouter();
   const balance = useTokenBalance();
+  const client = useQueryClient();
 
   const send = useSend();
   const [amount, dispatch] = useReducer(
@@ -34,6 +36,7 @@ const Send: NextPage = () => {
             { to, amount, name },
             {
               onSuccess: () => {
+                client.invalidateQueries();
                 router.push("/");
               },
               onError: console.log,
@@ -51,6 +54,7 @@ const Send: NextPage = () => {
               <span className="text-sm">/ {balance.data}</span>
             </div>
             <Button
+              disabled={send.isLoading}
               type="button"
               className="absolute right-0 top-0"
               onClick={() => dispatch("reset")}
@@ -60,6 +64,7 @@ const Send: NextPage = () => {
           </div>
           <div className="mb-16 flex justify-center">
             <button
+              disabled={send.isLoading}
               type="button"
               className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-gray-200 transition-colors hover:bg-gray-300 active:bg-gray-100"
               onClick={() => dispatch("inc")}
@@ -68,8 +73,12 @@ const Send: NextPage = () => {
             </button>
           </div>
           <div className="flex justify-center">
-            <Button className="" type="submit" disabled={!amount}>
-              Send
+            <Button
+              className=""
+              type="submit"
+              disabled={!amount || send.isLoading}
+            >
+              {send.isLoading ? "Sending..." : "Send"}
             </Button>
           </div>
         </div>

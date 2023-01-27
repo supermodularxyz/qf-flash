@@ -8,7 +8,7 @@ import { getContract } from "utils/getContract";
 export const useTokenBalance = () => {
   const { wallet } = useWallet();
   return useQuery(
-    ["qf", "balanceOf", wallet?.address],
+    ["qf-balance"],
     () =>
       getContract(wallet)
         .balanceOf(wallet?.address as string)
@@ -20,7 +20,7 @@ export const useTokenBalance = () => {
 export const useBalance = () => {
   const { wallet } = useWallet();
   return useQuery(
-    ["balance", wallet?.address],
+    ["eth-balance"],
     () => wallet?.getBalance().then((value) => formatEther(value)),
     { enabled: !!wallet }
   );
