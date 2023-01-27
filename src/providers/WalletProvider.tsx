@@ -33,7 +33,7 @@ export const WalletProvider = ({
     (mnemonic: string) => {
       console.time("creating wallet");
 
-      const provider = new providers.AlchemyProvider(rpcUrl, alchemyKey);
+      const provider = new providers.JsonRpcProvider(rpcUrl);
       const wallet = Wallet.fromMnemonic(mnemonic).connect(provider);
 
       storage.set(MNEMONIC_KEY, mnemonic);
