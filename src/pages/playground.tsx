@@ -1,9 +1,10 @@
 import { type NextPage } from "next";
-
 import Link from "next/link";
-import { Layout } from "components/Layout";
 import { Wallet } from "ethers";
-import { useEffect } from "react";
+
+import { BaseLayout } from "layouts/BaseLayout";
+import { P } from "components/Text";
+import QRCode from "react-qr-code";
 
 const mnemonics = [
   // "life world brick wealth decade wish friend legal transfer fog surface enroll",
@@ -14,24 +15,42 @@ const mnemonics = [
   "west relief carbon segment wasp jazz cloth solid devote vendor forum early",
 ];
 
-const Playground: NextPage = () => {
-  useEffect(() => {
-    console.log(mnemonics.map((m) => Wallet.fromMnemonic(m).address));
-  }, []);
-  return (
-    <Layout>
-      <h1 className="mb-4 text-center text-4xl">Select a wallet</h1>
+const testWallets = mnemonics.map((mnemonic: string) => {
+  const w = Wallet.fromMnemonic(mnemonic);
+  return { address: w.address, mnemonic };
+});
 
-      <div className="grid grid-cols-2 gap-2">
-        {mnemonics.map((m, i) => (
-          <Link key={i} href={`/create?key=${m}`}>
-            <div className="flex aspect-square items-center justify-center rounded-lg bg-gray-200 transition-colors hover:bg-gray-300">
-              Wallet #{i + 1}
-            </div>
-          </Link>
-        ))}
+const Playground: NextPage = () => {
+  return (
+    <BaseLayout>
+      <div className="p-4">
+        <div className="mb-4 text-sm uppercase tracking-widest">
+          Select a wallet
+        </div>
+        <P>This page is here to test different wallets.</P>
+        <P>
+          In the final product, these wallets will be scanned as QR codes from
+          the attendees phone.
+        </P>
+        <div className="">
+          <div className="grid grid-cols-2 gap-4">
+            {testWallets.map((wallet, i) => (
+              <Link key={i} href={`/create?key=${encodeURI(wallet.mnemonic)}`}>
+                <div className="rounded-lg p-2 transition-colors hover:bg-gray-100">
+                  <div className="mb-2 flex justify-center">
+                    <QRCode
+                      className="h-32 w-32 rounded-lg"
+                      value={wallet.address}
+                    />
+                  </div>
+                  <div className="text-center">Wallet #{i + 1}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
-    </Layout>
+    </BaseLayout>
   );
 };
 
