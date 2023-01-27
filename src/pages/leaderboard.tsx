@@ -1,31 +1,33 @@
 import { type NextPage } from "next";
 
 import { Layout } from "layouts/Layout";
-import { useSendEvents } from "hooks/useSendEvents";
+import { useLeaderboard } from "hooks/useLeaderboard";
 import { truncate } from "utils/truncate";
 import { timeAgo } from "utils/date";
 import { Skeleton } from "components/Skeleton";
+import { useMemo } from "react";
 
 const createLoadingProjects = (length = 2) =>
   Array.from({ length })
     .fill(0)
     .map((_, i) => i)
-    .reduce(
-      (acc, i) => ({
-        ...acc,
-        [i]: { amount: 0, funders: 0, lastFunded: 0 },
+    .map(
+      (i) => ({
+        address: `0x...${i}`,
+        amount: 0,
+        matching: 0,
+        funders: [],
+        lastFunded: 0,
       }),
       {}
     );
 
 const Leaderboard: NextPage = () => {
-  const { data, isLoading } = useSendEvents();
+  const { data, isLoading } = useLeaderboard();
 
-  console.log(JSON.stringify(data, null, 2));
-  console.log(data?.projects);
   const {
     nameByAddress = {},
-    projects = {},
+    projects = [],
     queryDuration,
     lastUpdated,
   } = data || {};
@@ -46,8 +48,8 @@ const Leaderboard: NextPage = () => {
           </tr>
         </thead>
         <tbody>
-          {Object.entries(isLoading ? loadingProjects : projects).map(
-            ([address, { amount, funders, lastFunded }]) => {
+          {(isLoading ? loadingProjects : projects).map(
+            ({ address = "", amount = 0, funders = [], matching = 0 }) => {
               return (
                 <tr key={address}>
                   <td className="w-16">
@@ -62,12 +64,13 @@ const Leaderboard: NextPage = () => {
                   </td>
                   <td className="w-24 text-right">
                     <Skeleton className="w-12" isLoading={isLoading}>
-                      {funders.size}
+                      {funders.length}
                     </Skeleton>
                   </td>
                   <td className="w-24 text-right">
                     <Skeleton className="w-12" isLoading={isLoading}>
-                      ?{/* {timeAgo(lastFunded)} ago */}
+                      {(matching || 0).toFixed(2)}
+                      {/* {timeAgo(lastFunded)} ago */}
                     </Skeleton>
                   </td>
                 </tr>

@@ -2,8 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import { parseBytes32String } from "ethers/lib/utils";
 import { useWallet } from "providers/WalletProvider";
 import { getContract } from "utils/getContract";
+import { sum } from "utils/math";
+import { calculateMatch } from "utils/qf";
 
-export const useSendEvents = () => {
+export type Projects = {
+  [address: string]: {
+    amounts: number[];
+    funders: Set<string>;
+    lastFunded: number;
+  };
+};
+
+export const useLeaderboard = () => {
   const { wallet } = useWallet();
 
   return useQuery(
@@ -12,16 +22,8 @@ export const useSendEvents = () => {
       const queryStart = Date.now();
       const contract = getContract(wallet);
       const nameByAddress: { [address: string]: string } = {};
-      const amountByAddress: { [address: string]: number } = {};
-      const votesByAddress: { [address: string]: string } = {};
 
-      const projects: {
-        [address: string]: {
-          amount: number;
-          funders: Set<string>;
-          lastFunded: number;
-        };
-      } = {};
+      const projects: Projects = {};
 
       const events = await contract
         .queryFilter(contract.filters.Sent())
@@ -37,17 +39,13 @@ export const useSendEvents = () => {
 
               if (!projects[to])
                 projects[to] = {
-                  amount: 0,
+                  amounts: [],
                   funders: new Set(),
                   lastFunded: 0,
                 };
 
-              projects[to]!.amount = projects[to]!.amount += Number(amount);
+              projects[to]!.amounts.push(Number(amount));
               projects[to]!.funders.add(from);
-              // projects[to]!.lastFunded =
-              //   timestamp >= projects[to]!.lastFunded
-              //     ? timestamp
-              //     : projects[to]!.lastFunded;
 
               return {
                 amount: amount.toString(),
@@ -65,16 +63,26 @@ export const useSendEvents = () => {
         });
 
       const queryEnd = Date.now();
+
       return {
         events,
         nameByAddress,
-        amountByAddress,
-        votesByAddress,
-        projects,
+        projects: mapProjects(projects),
         queryDuration: queryEnd - queryStart,
         lastUpdated: queryEnd,
       };
     },
     { enabled: Boolean(wallet), refetchInterval: 10000 }
   );
+};
+const mapProjects = (projects: Projects) => {
+  const matches = calculateMatch(projects);
+  return Object.entries(projects)
+    .map(([address, { amounts, funders }]) => ({
+      address,
+      matching: matches[address],
+      amount: sum(amounts),
+      funders: Array.from(funders),
+    }))
+    .sort((a, b) => (Number(a.matching) > Number(b.matching) ? -1 : 1));
 };
