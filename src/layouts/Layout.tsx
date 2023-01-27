@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useWallet } from "providers/WalletProvider";
 import { PropsWithChildren, ReactNode } from "react";
+import { BaseLayout } from "./BaseLayout";
 
 const Logo = () => {
   const isFetching = useIsFetching();
@@ -35,49 +36,40 @@ export const Layout = ({
   const { wallet, isLoading } = useWallet();
 
   return (
-    <>
-      <Head>
-        <title>QF Flash Game</title>
-        <meta name="description" content="QF Flash Game" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="h-screen bg-gray-100 font-mono text-sm md:py-16">
-        <div className="container relative mx-auto h-full max-w-md  bg-white md:rounded-xl md:shadow-2xl">
-          <header className="flex items-center justify-between p-1">
-            <Logo />
-            <div className="flex items-center gap-1 text-xs">
-              <NavLink label="Leaderboard" href={`/leaderboard`} />
-              <NavLink label="What is this?" href={`/about`} />
-              <Link href={`/wallet`} className="">
-                <Button className="rounded-full py-2 px-2">
-                  <Wallet className="h-4 w-4" />
-                </Button>
+    <BaseLayout>
+      <header className="flex items-center justify-between p-1">
+        <Logo />
+        <div className="flex items-center gap-1 text-xs">
+          <NavLink label="Leaderboard" href={`/leaderboard`} />
+          <NavLink label="What is this?" href={`/about`} />
+          <Link href={`/wallet`} className="">
+            <Button className="rounded-full py-2 px-2">
+              <Wallet className="h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </header>
+      <div className="h-[2px] bg-gradient-to-r from-fuchsia-500 via-red-500  to-yellow-500 " />
+      <div className="p-4">
+        {isLoading ? (
+          <Alert>
+            <div className="h-8 w-8 animate-ping rounded-full border-4 border-fuchsia-500" />
+          </Alert>
+        ) : wallet ? (
+          children
+        ) : (
+          <Alert>
+            <div className="flex flex-col gap-4">
+              <div className="text-center">No wallet found</div>
+              <Link href={"/playground"}>
+                <Button>Create one in Playground</Button>
               </Link>
             </div>
-          </header>
-          <div className="h-[2px] bg-gradient-to-r from-fuchsia-500 via-red-500  to-yellow-500 " />
-          <div className="p-4">
-            {isLoading ? (
-              <Alert>
-                <div className="h-8 w-8 animate-ping rounded-full border-4 border-fuchsia-500" />
-              </Alert>
-            ) : wallet ? (
-              children
-            ) : (
-              <Alert>
-                <div className="flex flex-col gap-4">
-                  <div className="text-center">No wallet found</div>
-                  <Link href={"/playground"}>
-                    <Button>Create one in Playground</Button>
-                  </Link>
-                </div>
-              </Alert>
-            )}
-          </div>
-          <div className="fixed bottom-8 right-8">{wallet && fab}</div>
-        </div>
-      </main>
-    </>
+          </Alert>
+        )}
+      </div>
+      <div className="absolute bottom-8 right-8">{wallet && fab}</div>
+    </BaseLayout>
   );
 };
 
