@@ -67,9 +67,9 @@ const Leaderboard: NextPage = () => {
                       {funders.length}
                     </Skeleton>
                   </td>
-                  <td className="w-24 text-right">
+                  <td className="w-28 text-right">
                     <Skeleton className="w-12" isLoading={isLoading}>
-                      {(matching || 0).toFixed(2)}
+                      {(matching || 0).toFixed(2)} DAI
                       {/* {timeAgo(lastFunded)} ago */}
                     </Skeleton>
                   </td>
