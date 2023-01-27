@@ -41,9 +41,9 @@ const Leaderboard: NextPage = () => {
       <table className="mb-4 w-full table-auto text-sm">
         <thead>
           <tr className="text-left text-xs">
-            <th>Amount</th>
+            <th>Tokens</th>
             <th>Project</th>
-            <th className="text-right"># Funders</th>
+            <th className="text-right">Funders</th>
             <th className="text-right">Matching</th>
             {/* <th className="text-right">Last funded</th> */}
           </tr>
@@ -63,7 +63,7 @@ const Leaderboard: NextPage = () => {
                       {nameByAddress[address] || truncate(address)}
                     </Skeleton>
                   </td>
-                  <td className="w-24 text-right">
+                  <td className="w-20 text-right">
                     <Skeleton className="w-12" isLoading={isLoading}>
                       {funders.length}
                     </Skeleton>
