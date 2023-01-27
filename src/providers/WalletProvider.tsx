@@ -6,9 +6,9 @@ import {
   PropsWithChildren,
   useContext,
 } from "react";
+import { ethers } from "ethers";
 import { storage } from "utils/storage";
 
-import type { ethers } from "ethers";
 type Context = {
   wallet: ethers.Wallet | null;
   createWallet: (m: string) => void;
@@ -34,21 +34,19 @@ export const WalletProvider = ({
   const value = useMemo(() => {
     return {
       createWallet: (mnemonic: string) => {
-        import("ethers").then(({ providers, Wallet }) => {
-          const createWallet = (mnemonic: string) =>
-            Wallet.fromMnemonic(mnemonic);
+        const createWallet = (mnemonic: string) =>
+          ethers.Wallet.fromMnemonic(mnemonic);
 
-          // const provider = new providers.AlchemyProvider(
-          //   "optimism-goerli",
-          //   alchemyKey
-          // );
-          const provider = new providers.JsonRpcProvider(rpcUrl);
-          const wallet = createWallet(mnemonic).connect(provider);
+        // const provider = new providers.AlchemyProvider(
+        //   "optimism-goerli",
+        //   alchemyKey
+        // );
+        const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+        const wallet = createWallet(mnemonic).connect(provider);
 
-          storage.set(MNEMONIC_KEY, mnemonic);
+        storage.set(MNEMONIC_KEY, mnemonic);
 
-          setState({ wallet });
-        });
+        setState({ wallet });
       },
     };
   }, []);
