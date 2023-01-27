@@ -7,12 +7,7 @@ import { Button } from "components/Button";
 import { Layout } from "components/Layout";
 import { useBalance, useTokenBalance } from "hooks/useBalance";
 import { useWallet } from "providers/WalletProvider";
-import {
-  ArrowRight,
-  Camera,
-  CornerRightDown,
-  CornerRightUp,
-} from "lucide-react";
+import { ArrowRight, Camera } from "lucide-react";
 import { useState } from "react";
 import { storage } from "utils/storage";
 import { Skeleton } from "components/Skeleton";

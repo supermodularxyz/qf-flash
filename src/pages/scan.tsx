@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 
 const isAddress = (address: string) => address.match(/^(0x)?[0-9a-fA-F]{40}$/);
 
-const ScanQR = dynamic(() => import("components/ScanQR"));
+const ScanQR = dynamic(() => import("components/ScanQR"), { ssr: false });
 const Scan: NextPage = () => {
   const router = useRouter();
 
