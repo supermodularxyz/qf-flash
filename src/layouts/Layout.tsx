@@ -74,7 +74,7 @@ export const Layout = ({
               </Alert>
             )}
           </div>
-          <div className="absolute bottom-8 right-8">{wallet && fab}</div>
+          <div className="fixed bottom-8 right-8">{wallet && fab}</div>
         </div>
       </main>
     </>
