@@ -23,6 +23,7 @@ export const useWallet = () => useContext(WalletContext);
 const MNEMONIC_KEY = "mnemonic";
 const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_ID;
 
+const createWallet = (mnemonic: string) => ethers.Wallet.fromMnemonic(mnemonic);
 export const WalletProvider = ({
   children,
   rpcUrl,
@@ -34,8 +35,7 @@ export const WalletProvider = ({
   const value = useMemo(() => {
     return {
       createWallet: (mnemonic: string) => {
-        const createWallet = (mnemonic: string) =>
-          ethers.Wallet.fromMnemonic(mnemonic);
+        console.time("creating wallet");
 
         // const provider = new providers.AlchemyProvider(
         //   "optimism-goerli",
@@ -47,6 +47,7 @@ export const WalletProvider = ({
         storage.set(MNEMONIC_KEY, mnemonic);
 
         setState({ wallet });
+        console.timeEnd("creating wallet");
       },
     };
   }, []);

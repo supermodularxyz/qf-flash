@@ -10,11 +10,9 @@ export const useTokenBalance = () => {
   return useQuery(
     ["qf", "balanceOf", wallet?.address],
     () =>
-      getContract(wallet).then((contract) =>
-        contract
-          .balanceOf(wallet?.address as string)
-          .then((value: BigNumber) => value.toString())
-      ),
+      getContract(wallet)
+        .balanceOf(wallet?.address as string)
+        .then((value: BigNumber) => value.toString()),
     { enabled: Boolean(wallet) }
   );
 };
