@@ -83,7 +83,7 @@ const Leaderboard: NextPage = () => {
       <div className="flex justify-between text-xs">
         <div>
           Last updated:{" "}
-          {lastUpdated && [<span>&lt;</span>, timeAgo(lastUpdated)]}
+          {lastUpdated && <span>&lt; {timeAgo(lastUpdated)}</span>}
         </div>
         <div>Query time: {queryDuration}ms</div>
       </div>
