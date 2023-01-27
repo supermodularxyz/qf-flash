@@ -1,6 +1,5 @@
 import { type NextPage } from "next";
 
-import Link from "next/link";
 import { Layout } from "components/Layout";
 import { Button } from "components/Button";
 import { useWallet } from "providers/WalletProvider";
@@ -14,9 +13,7 @@ const Wallet: NextPage = () => {
   const { wallet } = useWallet();
   const balance = useBalance();
   const tokens = useTokenBalance();
-  console.log(wallet);
-  console.log(balance.data);
-  console.log(tokens.data);
+
   return (
     <Layout>
       <div className="mb-4 text-sm uppercase tracking-widest">Wallet</div>
@@ -26,8 +23,13 @@ const Wallet: NextPage = () => {
         <span className="text-md font-bold underline underline-offset-2">
           {tokens.data}
         </span>{" "}
-        tokens in your wallet.
+        tokens in your wallet and{" "}
+        <span className="text-md font-bold underline underline-offset-2">
+          {(+(balance.data || "0")).toFixed(4)}
+        </span>{" "}
+        ETH.
       </P>
+
       <Input className="mb-8 w-full text-sm" value={wallet?.address} />
       <div className="mb-2 flex justify-center">
         <Button onClick={() => setReveal(true)}>Reveal wallet key</Button>
