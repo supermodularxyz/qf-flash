@@ -7,7 +7,12 @@ export const Skeleton = ({
   className,
 }: { isLoading: boolean } & ComponentPropsWithoutRef<"div">) =>
   isLoading ? (
-    <div className={clsx("h-4 flex-1 animate-pulse bg-gray-200", className)} />
+    <span
+      className={clsx(
+        "relative top-0.5 inline-flex h-4 flex-1 animate-pulse items-center bg-gray-200",
+        className
+      )}
+    />
   ) : (
     <>{children}</>
   );

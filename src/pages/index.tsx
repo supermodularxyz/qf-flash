@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { storage } from "utils/storage";
+import { Skeleton } from "components/Skeleton";
 
 const ScanButon = () => {
   const [hideInstructions, setHideInstructions] = useState(
@@ -60,9 +61,11 @@ const Home: NextPage = () => {
         <P>There is $10k at stake, which will be distributed via QF.</P>
         <P>
           You have{" "}
-          <span className="text-md font-bold underline underline-offset-2">
-            {tokens.data}
-          </span>{" "}
+          <Skeleton className="w-6" isLoading={tokens.isLoading}>
+            <span className="text-md font-bold underline underline-offset-2">
+              {tokens.data}
+            </span>
+          </Skeleton>{" "}
           tokens in your wallet.
         </P>
         <P>Scan another attendees QR code to vote for them</P>

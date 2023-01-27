@@ -7,6 +7,7 @@ import { Input, Textarea } from "components/Form";
 import { useState } from "react";
 import { useBalance, useTokenBalance } from "hooks/useBalance";
 import { P } from "components/Text";
+import { Skeleton } from "components/Skeleton";
 
 const Wallet: NextPage = () => {
   const [reveal, setReveal] = useState(false);
@@ -20,13 +21,17 @@ const Wallet: NextPage = () => {
 
       <P>
         You have{" "}
-        <span className="text-md font-bold underline underline-offset-2">
-          {tokens.data}
-        </span>{" "}
+        <Skeleton className="w-6" isLoading={tokens.isLoading}>
+          <span className="text-md font-bold underline underline-offset-2">
+            {tokens.data}
+          </span>
+        </Skeleton>{" "}
         tokens in your wallet and{" "}
-        <span className="text-md font-bold underline underline-offset-2">
-          {(+(balance.data || "0")).toFixed(4)}
-        </span>{" "}
+        <Skeleton className="w-12" isLoading={balance.isLoading}>
+          <span className="text-md font-bold underline underline-offset-2">
+            {(+(balance.data || "0")).toFixed(4)}
+          </span>
+        </Skeleton>{" "}
         ETH.
       </P>
 
