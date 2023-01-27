@@ -19,7 +19,8 @@ const Leaderboard: NextPage = () => {
 
   return (
     <Layout>
-      <h1 className="mb-4 text-center text-4xl">Leaderboard</h1>
+      {/* <h1 className="mb-2 text-2xl">Leaderboard</h1> */}
+      <div className="mb-4 text-sm uppercase tracking-widest">Leaderboard</div>
 
       <table className="mb-4 w-full table-auto text-sm">
         <thead>

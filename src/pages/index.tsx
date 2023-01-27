@@ -7,6 +7,43 @@ import { Button } from "components/Button";
 import { Layout } from "components/Layout";
 import { useBalance, useTokenBalance } from "hooks/useBalance";
 import { useWallet } from "providers/WalletProvider";
+import {
+  ArrowRight,
+  Camera,
+  CornerRightDown,
+  CornerRightUp,
+} from "lucide-react";
+import { useState } from "react";
+import { storage } from "utils/storage";
+
+const ScanButon = () => {
+  const [hideInstructions, setHideInstructions] = useState(
+    false
+    // () => storage.get("instructions") === "hidden"
+  );
+  function handleHideInstructions() {
+    setHideInstructions(true);
+    // storage.set("instructions", "hidden");
+  }
+  return (
+    <>
+      {!hideInstructions ? (
+        <span className="absolute -left-48 top-6 flex items-center gap-4 pl-2">
+          Press to scan QR
+          <ArrowRight className="h-4 w-4" />
+        </span>
+      ) : null}
+      <Link href={`/scan`}>
+        <Button
+          onClick={handleHideInstructions}
+          className="h-16 w-16 rounded-full bg-gray-900 text-gray-50 shadow-xl hover:bg-gray-700 hover:shadow-none"
+        >
+          <Camera />
+        </Button>
+      </Link>
+    </>
+  );
+};
 
 const Home: NextPage = () => {
   const { wallet } = useWallet();
@@ -16,28 +53,31 @@ const Home: NextPage = () => {
 
   console.log("balance", data);
   return (
-    <Layout>
-      <h1 className="text-center uppercase tracking-widest">Welcome to the</h1>
-      <h1 className="mb-4 text-center text-4xl">QF Flash Game</h1>
-      <div className="">
+    <Layout fab={<ScanButon />}>
+      <div className="text-sm uppercase tracking-widest">Welcome to the</div>
+      <h3 className="mb-2 text-2xl">QF Flash Game</h3>
+      <div className="text-sm">
         <P>There is $10k at stake, which will be distributed via QF.</P>
         <P>
           You have{" "}
-          <span className="font-bold underline underline-offset-2">
+          <span className="text-md font-bold underline underline-offset-2">
             {tokens.data}
           </span>{" "}
           tokens in your wallet.
         </P>
         <P>Scan another attendees QR code to vote for them</P>
       </div>
-      <Link href={`/scan`}>
+      {/* <Link href={`/scan`}>
         <Button className="mb-4 w-full">Scan QR</Button>
-      </Link>
+      </Link> */}
       <div className="mt-4 flex justify-center">
         {wallet ? (
-          <QRCode className="rounded-lg" value={wallet?.address} />
+          <QRCode
+            className="h-48 w-48 rounded-xl shadow-xl"
+            value={wallet?.address}
+          />
         ) : (
-          <div className="h-64 w-64 animate-pulse rounded-lg bg-gray-200" />
+          <div className="h-48 w-48 animate-pulse rounded-xl bg-gray-200 shadow-xl" />
         )}
       </div>
     </Layout>

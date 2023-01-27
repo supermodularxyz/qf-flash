@@ -4,9 +4,10 @@ import Link from "next/link";
 import { Layout } from "components/Layout";
 import { Button } from "components/Button";
 import { useWallet } from "providers/WalletProvider";
-import { Textarea } from "components/Form";
+import { Input, Textarea } from "components/Form";
 import { useState } from "react";
 import { useBalance, useTokenBalance } from "hooks/useBalance";
+import { P } from "components/Text";
 
 const Wallet: NextPage = () => {
   const [reveal, setReveal] = useState(false);
@@ -18,14 +19,22 @@ const Wallet: NextPage = () => {
   console.log(tokens.data);
   return (
     <Layout>
-      <h1 className="mb-4 text-center text-4xl">Wallet</h1>
+      <div className="mb-4 text-sm uppercase tracking-widest">Wallet</div>
 
-      <pre>{wallet?.address}</pre>
+      <P>
+        You have{" "}
+        <span className="text-md font-bold underline underline-offset-2">
+          {tokens.data}
+        </span>{" "}
+        tokens in your wallet.
+      </P>
+      <Input className="mb-8 w-full text-sm" value={wallet?.address} />
       <div className="mb-2 flex justify-center">
         <Button onClick={() => setReveal(true)}>Reveal wallet key</Button>
       </div>
       {reveal ? (
         <Textarea
+          rows={4}
           autoFocus
           value={wallet?.mnemonic.phrase}
           className="w-full text-center"

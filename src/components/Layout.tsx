@@ -4,7 +4,7 @@ import { Wallet, Zap } from "lucide-react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import { Button } from "./Button";
 
 const Logo = () => {
@@ -23,15 +23,18 @@ const Logo = () => {
     </Link>
   );
 };
-export const Layout = ({ children }: PropsWithChildren) => (
+export const Layout = ({
+  children,
+  fab,
+}: { fab?: ReactNode } & PropsWithChildren) => (
   <>
     <Head>
       <title>QF Flash Game</title>
       <meta name="description" content="QF Flash Game" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <main className="text-md h-screen bg-gray-100 font-mono md:py-16">
-      <div className="container mx-auto h-full max-w-md bg-white  md:rounded-xl md:shadow-2xl">
+    <main className="h-screen bg-gray-100 font-mono text-sm md:py-16">
+      <div className="container relative mx-auto h-full max-w-md  bg-white md:rounded-xl md:shadow-2xl">
         <header className="flex items-center justify-between p-1">
           <Logo />
           <div className="flex items-center gap-1 text-xs">
@@ -46,6 +49,7 @@ export const Layout = ({ children }: PropsWithChildren) => (
         </header>
         <div className="h-[2px] bg-gradient-to-r from-fuchsia-500 via-red-500  to-yellow-500 " />
         <div className="p-4">{children}</div>
+        <div className="absolute bottom-8 right-8">{fab}</div>
       </div>
     </main>
   </>

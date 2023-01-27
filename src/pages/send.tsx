@@ -59,12 +59,13 @@ const Send: NextPage = () => {
             </Button>
           </div>
           <div className="mb-16 flex justify-center">
-            <div
+            <button
+              type="button"
               className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-gray-200 transition-colors hover:bg-gray-300 active:bg-gray-100"
               onClick={() => dispatch("inc")}
             >
               <Zap />
-            </div>
+            </button>
           </div>
           <div className="flex justify-center">
             <Button className="" type="submit" disabled={!amount}>
