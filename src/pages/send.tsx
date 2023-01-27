@@ -36,7 +36,6 @@ const Send: NextPage = () => {
             { to, amount, name },
             {
               onSuccess: () => {
-                client.invalidateQueries();
                 router.push("/");
               },
               onError: console.log,

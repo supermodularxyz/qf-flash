@@ -20,6 +20,8 @@ const testWallets = mnemonics.map((mnemonic: string) => {
   return { address: w.address, mnemonic };
 });
 
+console.log(testWallets);
+
 const Playground: NextPage = () => {
   return (
     <BaseLayout>

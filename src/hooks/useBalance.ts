@@ -13,7 +13,7 @@ export const useTokenBalance = () => {
       getContract(wallet)
         .balanceOf(wallet?.address as string)
         .then((value: BigNumber) => value.toString()),
-    { enabled: Boolean(wallet) }
+    { enabled: Boolean(wallet), refetchInterval: 3000 }
   );
 };
 
@@ -22,6 +22,6 @@ export const useBalance = () => {
   return useQuery(
     ["eth-balance"],
     () => wallet?.getBalance().then((value) => formatEther(value)),
-    { enabled: !!wallet }
+    { enabled: !!wallet, refetchInterval: 3000 }
   );
 };
