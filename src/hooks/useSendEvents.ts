@@ -27,11 +27,11 @@ export const useSendEvents = () => {
         .queryFilter(contract.filters.Sent())
         .then((events) => {
           return Promise.all(
-            events.map(async (e) => {
+            events.map((e) => {
               const { amount, from, to, data } = e.args;
               const name = parseBytes32String(data);
-              const block = await wallet?.provider.getBlock(e.blockNumber);
-              const timestamp = block ? block?.timestamp * 1000 : 0;
+              // const block = await wallet?.provider.getBlock(e.blockNumber);
+              // const timestamp = block ? block?.timestamp * 1000 : 0;
 
               nameByAddress[from] = name;
 
@@ -44,17 +44,17 @@ export const useSendEvents = () => {
 
               projects[to]!.amount = projects[to]!.amount += Number(amount);
               projects[to]!.funders.add(from);
-              projects[to]!.lastFunded =
-                timestamp >= projects[to]!.lastFunded
-                  ? timestamp
-                  : projects[to]!.lastFunded;
+              // projects[to]!.lastFunded =
+              //   timestamp >= projects[to]!.lastFunded
+              //     ? timestamp
+              //     : projects[to]!.lastFunded;
 
               return {
                 amount: amount.toString(),
                 from,
                 to,
                 name,
-                timestamp: block ? new Date(block?.timestamp * 1000) : null,
+                // timestamp: block ? new Date(block?.timestamp * 1000) : null,
               };
             })
           );
