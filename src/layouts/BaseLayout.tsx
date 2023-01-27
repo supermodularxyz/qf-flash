@@ -11,7 +11,7 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
         <meta name="description" content="QF Flash Game" />
         <meta
           name="viewport"
-          content="width=device-width, user-scalable=no"
+          content="width=device-width, initial-scale=1, user-scalable=no"
         ></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
