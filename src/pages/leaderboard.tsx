@@ -33,6 +33,7 @@ const Leaderboard: NextPage = () => {
   } = data || {};
 
   const loadingProjects = createLoadingProjects(3);
+  console.log(projects);
   return (
     <Layout>
       <div className="mb-4 text-sm uppercase tracking-widest">Leaderboard</div>
@@ -80,7 +81,10 @@ const Leaderboard: NextPage = () => {
         </tbody>
       </table>
       <div className="flex justify-between text-xs">
-        <div>{/* Last updated: {timeAgo(lastUpdated)} */}</div>
+        <div>
+          Last updated:{" "}
+          {lastUpdated && [<span>&lt;</span>, timeAgo(lastUpdated)]}
+        </div>
         <div>Query time: {queryDuration}ms</div>
       </div>
     </Layout>

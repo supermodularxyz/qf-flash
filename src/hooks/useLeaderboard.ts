@@ -7,9 +7,7 @@ import { calculateMatch } from "utils/qf";
 
 export type Projects = {
   [address: string]: {
-    amounts: number[];
-    funders: Set<string>;
-    lastFunded: number;
+    funders: { [address: string]: number };
   };
 };
 
@@ -31,29 +29,16 @@ export const useLeaderboard = () => {
           return Promise.all(
             events.map((e) => {
               const { amount, from, to, data } = e.args;
-              const name = parseBytes32String(data);
-              // const block = await wallet?.provider.getBlock(e.blockNumber);
-              // const timestamp = block ? block?.timestamp * 1000 : 0;
 
+              const name = parseBytes32String(data);
               nameByAddress[from] = name;
 
-              if (!projects[to])
-                projects[to] = {
-                  amounts: [],
-                  funders: new Set(),
-                  lastFunded: 0,
-                };
+              if (!projects[to]) projects[to] = { funders: {} };
 
-              projects[to]!.amounts.push(Number(amount));
-              projects[to]!.funders.add(from);
+              projects[to]!.funders[from] =
+                (projects[to]!.funders[from] || 0) + Number(amount);
 
-              return {
-                amount: amount.toString(),
-                from,
-                to,
-                name,
-                // timestamp: block ? new Date(block?.timestamp * 1000) : null,
-              };
+              return {};
             })
           );
         })
@@ -63,9 +48,7 @@ export const useLeaderboard = () => {
         });
 
       const queryEnd = Date.now();
-
       return {
-        events,
         nameByAddress,
         projects: mapProjects(projects),
         queryDuration: queryEnd - queryStart,
@@ -78,11 +61,11 @@ export const useLeaderboard = () => {
 const mapProjects = (projects: Projects) => {
   const matches = calculateMatch(projects);
   return Object.entries(projects)
-    .map(([address, { amounts, funders }]) => ({
+    .map(([address, { funders }]) => ({
       address,
       matching: matches[address],
-      amount: sum(amounts),
-      funders: Array.from(funders),
+      amount: sum(Object.values(funders)),
+      funders: Object.keys(funders),
     }))
     .sort((a, b) => (Number(a.matching) > Number(b.matching) ? -1 : 1));
 };
