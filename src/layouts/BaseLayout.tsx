@@ -1,6 +1,9 @@
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
 
+const APP_NAME = "QF Flash Game";
+const APP_DESCRIPTION = `There is $10k at stake, which will be distributed via QF. You have 100 tokens in your wallet. Scan another attendees QR code to vote for them`;
+
 export const BaseLayout = ({ children }: PropsWithChildren) => {
   useMobileHeightFix();
 
@@ -8,11 +11,18 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
     <>
       <Head>
         <title>QF Flash Game</title>
-        <meta name="description" content="QF Flash Game" />
+        <meta name="application-name" content={APP_NAME} />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content={APP_NAME} />
+        <meta name="description" content={APP_DESCRIPTION} />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#FFFFFF" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, user-scalable=no"
-        ></meta>
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="bg-gray-100 font-mono text-sm md:py-16">
