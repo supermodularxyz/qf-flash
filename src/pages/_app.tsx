@@ -9,7 +9,6 @@ import { WalletProvider } from "providers/WalletProvider";
 
 const queryClient = new QueryClient();
 
-// http://127.0.0.1:8545
 const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL as string;
 
 console.log(rpcUrl);
