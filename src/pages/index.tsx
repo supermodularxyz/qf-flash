@@ -46,7 +46,9 @@ const Home: NextPage = () => {
   const tokens = useTokenBalance();
 
   return (
-    <Layout fab={<ScanButon />}>
+    <Layout
+    // fab={<ScanButon />}
+    >
       <div className="text-sm uppercase tracking-widest">Welcome to the</div>
       <h3 className="mb-2 text-2xl">QF Flash Game</h3>
       <div className="text-sm">
@@ -62,9 +64,9 @@ const Home: NextPage = () => {
         </P>
         <P>Scan another attendees QR code to vote for them</P>
       </div>
-      {/* <Link href={`/scan`}>
+      <Link href={`/scan`}>
         <Button className="mb-4 w-full">Scan QR</Button>
-      </Link> */}
+      </Link>
       <div className="mt-4 flex justify-center">
         {wallet ? (
           <QRCode
