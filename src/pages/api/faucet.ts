@@ -38,13 +38,12 @@ async function faucet(address: string) {
     }
   }
 }
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+interface ApiRequest extends NextApiRequest {
+  body: { address: string };
+}
+export default async function handler(req: ApiRequest, res: NextApiResponse) {
   try {
-    await faucet(req.body.address);
+    await faucet(req.body?.address);
     res.status(200).json({ name: "John Doe" });
   } catch (error) {
     console.log(error);
