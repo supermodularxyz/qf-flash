@@ -15,7 +15,7 @@ const Instructions = ({ hide = false }) =>
     </span>
   );
 
-export const ScanButon = () => {
+export const ScanButton = () => {
   // Only show instructions until use has pressed the Scan button
   const [hideInstructions, setHideInstructions] = useState(
     () => storage.get("instructions") === "hidden"

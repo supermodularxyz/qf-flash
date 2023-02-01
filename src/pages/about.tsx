@@ -2,10 +2,11 @@ import { type NextPage } from "next";
 
 import { Layout } from "layouts/Layout";
 import { P } from "components/Text";
+import { ScanButton } from "components/ScanButton";
 
 const About: NextPage = () => {
   return (
-    <Layout>
+    <Layout fab={<ScanButton />}>
       <div className="mb-4 text-sm uppercase tracking-widest">
         What is this?
       </div>

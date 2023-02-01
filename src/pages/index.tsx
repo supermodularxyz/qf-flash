@@ -7,7 +7,7 @@ import { useTokenBalance } from "hooks/useBalance";
 import { useWallet } from "providers/WalletProvider";
 import { Skeleton } from "components/Skeleton";
 import { Profile } from "components/Profile";
-import { ScanButon } from "components/ScanButton";
+import { ScanButton } from "components/ScanButton";
 import { useRole } from "hooks/useRole";
 import { roles } from "utils/roles";
 
@@ -45,7 +45,7 @@ const Instructions = () => {
 };
 const Home: NextPage = () => {
   return (
-    <Layout fab={<ScanButon />}>
+    <Layout fab={<ScanButton />}>
       <div className="flex items-center justify-between">
         <div>
           <div className="text-sm uppercase tracking-widest">

@@ -6,6 +6,7 @@ import { truncate } from "utils/truncate";
 import { timeAgo } from "utils/date";
 import { Skeleton } from "components/Skeleton";
 import { useName } from "hooks/useName";
+import { ScanButton } from "components/ScanButton";
 
 const createLoadingProjects = (length = 2) =>
   Array.from({ length })
@@ -39,7 +40,7 @@ const Leaderboard: NextPage = () => {
   console.log(projects);
   console.log(bees);
   return (
-    <Layout>
+    <Layout fab={<ScanButton />}>
       <div className="mb-4 text-sm uppercase tracking-widest">Leaderboard</div>
 
       <table className="mb-4 w-full table-auto text-sm">

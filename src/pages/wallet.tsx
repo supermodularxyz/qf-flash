@@ -8,15 +8,15 @@ import { useState } from "react";
 import { useBalance, useTokenBalance } from "hooks/useBalance";
 import { P } from "components/Text";
 import { Skeleton } from "components/Skeleton";
+import { ScanButton } from "components/ScanButton";
 
 const Wallet: NextPage = () => {
   const [reveal, setReveal] = useState(false);
   const { wallet } = useWallet();
   const balance = useBalance();
   const tokens = useTokenBalance();
-
   return (
-    <Layout>
+    <Layout fab={<ScanButton />}>
       <div className="mb-4 text-sm uppercase tracking-widest">Wallet</div>
 
       <P>
