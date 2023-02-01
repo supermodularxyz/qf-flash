@@ -8,14 +8,6 @@ import { truncate } from "utils/truncate";
 
 const wallets = {
   sender: {
-    "0x9C710D3e20692b25032204586c9dc7CcDa012Ab8":
-      "mixture welcome improve stock noble size check obscure scrap cake immune bread",
-    "0x331aF4cAc7d4086Cb56F4E5019f3C454Bb4114e8":
-      "vacant dose violin august yellow want tonight bench myth act fame foil",
-    "0xfa3Dc0a26B02f11Ac23eE3b391Eab64506D24c8D":
-      "worry daring dinosaur walnut slender move nut mirror team harbor faint return",
-  },
-  receiver: {
     "0xe1e494B8CF4566C0EC9E06f3b68BfB0C7D670e49":
       "that actor crew give leopard blade cradle hazard priority favorite joke nurse",
     "0x1bc7100863B6A754C008A5C9d3cDF05f5Ee6F8EF":
@@ -30,6 +22,14 @@ const wallets = {
       "feel company ball special remove urge legend fish lesson hill dynamic mobile",
     "0xa2BEc0AF10c6b469E3991D61C7a8CaEB93501500":
       "ostrich attitude antique acid erode document screen gadget apology rule hub rural",
+  },
+  receiver: {
+    "0x9C710D3e20692b25032204586c9dc7CcDa012Ab8":
+      "mixture welcome improve stock noble size check obscure scrap cake immune bread",
+    "0x331aF4cAc7d4086Cb56F4E5019f3C454Bb4114e8":
+      "vacant dose violin august yellow want tonight bench myth act fame foil",
+    "0xfa3Dc0a26B02f11Ac23eE3b391Eab64506D24c8D":
+      "worry daring dinosaur walnut slender move nut mirror team harbor faint return",
   },
 };
 
