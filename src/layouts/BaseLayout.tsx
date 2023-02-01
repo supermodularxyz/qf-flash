@@ -25,9 +25,9 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="bg-gray-100 font-mono text-sm md:py-16">
+      <main className="h-screen bg-gray-100 font-mono text-sm md:py-16">
         <div
-          className="app container relative mx-auto h-full max-w-md bg-white md:rounded-xl md:shadow-2xl"
+          className="container relative mx-auto h-full max-w-md bg-white md:rounded-xl md:shadow-2xl"
           style={{ maxHeight: 851, height: `calc(var(--vh, 1vh) * 100)` }}
         >
           {children}
