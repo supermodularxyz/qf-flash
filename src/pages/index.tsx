@@ -8,11 +8,42 @@ import { useWallet } from "providers/WalletProvider";
 import { Skeleton } from "components/Skeleton";
 import { Profile } from "components/Profile";
 import { ScanButon } from "components/ScanButton";
+import { useRole } from "hooks/useRole";
+import { roles } from "utils/roles";
 
-const Home: NextPage = () => {
+const FlowerQR = () => {
   const { wallet } = useWallet();
-  const tokens = useTokenBalance();
+  const role = useRole();
+  if (role.isLoading || role.data === roles.Sender) return null;
+  return (
+    <div className="mt-4 flex justify-center">
+      <QRCode
+        className="h-48 w-48 rounded-xl shadow-xl"
+        value={wallet?.address as string}
+      />
+    </div>
+  );
+};
 
+const Instructions = () => {
+  const tokens = useTokenBalance();
+  return (
+    <div className="text-sm">
+      <P>There is $10k at stake, which will be distributed via QF.</P>
+      <P>
+        You have{" "}
+        <Skeleton className="w-6" isLoading={tokens.isLoading}>
+          <span className="text-md font-bold underline underline-offset-2">
+            {tokens.data}
+          </span>
+        </Skeleton>{" "}
+        tokens in your wallet.
+      </P>
+      <P>Scan another attendees QR code to vote for them</P>
+    </div>
+  );
+};
+const Home: NextPage = () => {
   return (
     <Layout fab={<ScanButon />}>
       <div className="flex items-center justify-between">
@@ -24,32 +55,8 @@ const Home: NextPage = () => {
         </div>
         <Profile />
       </div>
-      <div className="text-sm">
-        <P>There is $10k at stake, which will be distributed via QF.</P>
-        <P>
-          You have{" "}
-          <Skeleton className="w-6" isLoading={tokens.isLoading}>
-            <span className="text-md font-bold underline underline-offset-2">
-              {tokens.data}
-            </span>
-          </Skeleton>{" "}
-          tokens in your wallet.
-        </P>
-        <P>Scan another attendees QR code to vote for them</P>
-      </div>
-      {/* <Link href={`/scan`}>
-        <Button className="mb-4 w-full">Scan QR</Button>
-      </Link> */}
-      <div className="mt-4 flex justify-center">
-        {wallet ? (
-          <QRCode
-            className="h-48 w-48 rounded-xl shadow-xl"
-            value={wallet?.address}
-          />
-        ) : (
-          <div className="h-48 w-48 animate-pulse rounded-xl bg-gray-200 shadow-xl" />
-        )}
-      </div>
+      <Instructions />
+      <FlowerQR />
     </Layout>
   );
 };
