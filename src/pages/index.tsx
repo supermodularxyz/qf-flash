@@ -34,8 +34,9 @@ const ScanButon = () => {
       ) : null}
       <Link href={`/scan`}>
         <Button
+          intent="primary"
           onClick={handleHideInstructions}
-          className="h-16 w-16 rounded-full bg-gray-900 text-gray-50 shadow-xl hover:bg-gray-700 hover:shadow-none"
+          className="h-16 w-16 rounded-full shadow-xl hover:shadow-none"
         >
           <Camera />
         </Button>

@@ -42,10 +42,15 @@ const EnsForm = ({ onCreate = () => Promise.resolve({}) }) => {
         className="w-full"
       />
       <div className="flex gap-1">
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <Button className="w-full" onClick={onCreate}>
           Skip
         </Button>
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={isLoading}
+          intent="primary"
+        >
           Go!
         </Button>
       </div>

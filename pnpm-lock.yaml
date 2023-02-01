@@ -14,6 +14,7 @@ specifiers:
   '@zxing/browser': ^0.1.1
   '@zxing/library': ^0.19.2
   autoprefixer: ^10.4.7
+  class-variance-authority: ^0.4.0
   clsx: ^1.2.1
   date-fns: ^2.29.3
   eslint: ^8.30.0
@@ -40,6 +41,7 @@ dependencies:
   '@tanstack/react-query': 4.23.0_biqbaboplfbrettd7655fr4n2y
   '@zxing/browser': 0.1.1_@zxing+library@0.19.2
   '@zxing/library': 0.19.2
+  class-variance-authority: 0.4.0_typescript@4.9.4
   clsx: 1.2.1
   date-fns: 2.29.3
   ethers: 5.7.2
@@ -1103,6 +1105,17 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /class-variance-authority/0.4.0_typescript@4.9.4:
+    resolution: {integrity: sha512-74enNN8O9ZNieycac/y8FxqgyzZhZbxmCitAtAeUrLPlxjSd5zA7LfpprmxEcOmQBnaGs5hYhiSGnJ0mqrtBLQ==}
+    peerDependencies:
+      typescript: '>= 4.5.5 < 5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 4.9.4
+    dev: false
 
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
@@ -3322,7 +3335,6 @@ packages:
     resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /typical/4.0.0:
     resolution: {integrity: sha512-VAH4IvQ7BDFYglMd7BPRDfLgxZZX4O4TFcRDA6EN5X7erNJJq+McIEp8np9aVtxrCJ6qx4GTYVfOWNjcqwZgRw==}
