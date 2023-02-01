@@ -6,11 +6,21 @@ import { P } from "components/Text";
 const About: NextPage = () => {
   return (
     <Layout>
-      {/* <h1 className="mb-2 text-2xl">What is this?</h1> */}
       <div className="mb-4 text-sm uppercase tracking-widest">
         What is this?
       </div>
-      <P>Detailed information about this app</P>
+      <P>Each user is either a Bee or a Flower</P>
+
+      <div className="flex justify-around gap-4 pt-8">
+        <div>
+          <div className="mb-2 text-center text-6xl">{"🌼"}</div>
+          <div>Build projects</div>
+        </div>
+        <div>
+          <div className="mb-2 text-center text-6xl">{"🐝"}</div>
+          <div>Discovers projects</div>
+        </div>
+      </div>
     </Layout>
   );
 };
