@@ -7,6 +7,6 @@ export const useSend = () => {
   const { wallet } = useWallet();
   return useMutation(
     ({ to, amount, name }: { to: string; amount: number; name: string }) =>
-      getContract(wallet).send(to, amount, formatBytes32String(name))
+      getContract(wallet).transfer(to, amount)
   );
 };
