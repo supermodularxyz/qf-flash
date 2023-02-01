@@ -11,6 +11,13 @@ export type Projects = {
   };
 };
 
+export type Bees = {
+  [address: string]: {
+    flowers: { [address: string]: number };
+  };
+};
+
+const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 export const useLeaderboard = () => {
   const { wallet } = useWallet();
 
@@ -19,27 +26,33 @@ export const useLeaderboard = () => {
     async () => {
       const queryStart = Date.now();
       const contract = getContract(wallet);
-      const nameByAddress: { [address: string]: string } = {};
 
       const projects: Projects = {};
+      const bees: Bees = {};
 
       const events = await contract
-        .queryFilter(contract.filters.Sent())
+        .queryFilter(contract.filters.Transfer())
         .then((events) => {
           return Promise.all(
-            events.map((e) => {
-              const { amount, from, to, data } = e.args;
+            events
+              .filter((e) => e.args.from !== ZERO_ADDRESS)
+              .map((e) => {
+                console.log(e);
+                // return {};
+                const { value, from, to } = e.args;
 
-              const name = parseBytes32String(data);
-              nameByAddress[from] = name;
+                if (!projects[to]) projects[to] = { funders: {} };
 
-              if (!projects[to]) projects[to] = { funders: {} };
+                projects[to]!.funders[from] =
+                  (projects[to]!.funders[from] || 0) + Number(value);
 
-              projects[to]!.funders[from] =
-                (projects[to]!.funders[from] || 0) + Number(amount);
+                if (!bees[from]) bees[from] = { flowers: {} };
 
-              return {};
-            })
+                bees[from]!.flowers[to] =
+                  (bees[from]!.flowers[to] || 0) + Number(value);
+
+                return {};
+              })
           );
         })
         .catch((err) => {
@@ -49,7 +62,7 @@ export const useLeaderboard = () => {
 
       const queryEnd = Date.now();
       return {
-        nameByAddress,
+        bees: mapBeeScores(bees),
         projects: mapProjects(projects),
         queryDuration: queryEnd - queryStart,
         lastUpdated: queryEnd,
@@ -58,6 +71,7 @@ export const useLeaderboard = () => {
     { enabled: Boolean(wallet), refetchInterval: 10000 }
   );
 };
+
 const mapProjects = (projects: Projects) => {
   const matches = calculateMatch(projects);
   return Object.entries(projects)
@@ -68,4 +82,14 @@ const mapProjects = (projects: Projects) => {
       funders: Object.keys(funders),
     }))
     .sort((a, b) => (Number(a.matching) > Number(b.matching) ? -1 : 1));
+};
+
+const mapBeeScores = (bees: Bees) => {
+  return Object.entries(bees).map(([address, { flowers }]) => {
+    return {
+      address,
+      visited: Object.keys(flowers).length,
+      amount: sum(Object.values(flowers)),
+    };
+  });
 };
