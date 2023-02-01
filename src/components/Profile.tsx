@@ -10,7 +10,7 @@ export const Profile = () => {
 
   return (
     <div>
-      <div className="text-4xl">{roleEmoji[role?.data || 0]}</div>
+      <div className="text-center text-4xl">{roleEmoji[role?.data || 0]}</div>
       <div className="text-center">{name.data}</div>
     </div>
   );

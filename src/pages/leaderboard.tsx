@@ -46,7 +46,7 @@ const Leaderboard: NextPage = () => {
       <table className="mb-4 w-full table-auto text-sm">
         <thead>
           <tr className="text-left text-xs">
-            <th>#</th>
+            <th>Tokens</th>
             <th>Flower</th>
             <th className="text-right">Visits</th>
             <th className="text-right">Matching</th>
