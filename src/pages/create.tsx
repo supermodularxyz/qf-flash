@@ -6,9 +6,57 @@ import { useWallet } from "providers/WalletProvider";
 import { Layout } from "layouts/Layout";
 import { Input, Label } from "components/Form";
 import { Button } from "components/Button";
-import { storage } from "utils/storage";
+import { useSetName } from "hooks/useName";
+import { useEnsAddress } from "hooks/useEnsAddress";
 
-const NAME_KEY = "name";
+const EnsForm = ({ onCreate = () => Promise.resolve({}) }) => {
+  const setName = useSetName();
+  const ens = useEnsAddress();
+
+  const isLoading = ens.isLoading || setName.isLoading;
+  return (
+    <form
+      className="flex flex-col gap-2 pt-24"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const target = e.target as HTMLFormElement;
+        const name = Object.fromEntries(new FormData(target)).name as string;
+
+        return (
+          ens
+            // Resolve ENS to address to verify it exists
+            .mutateAsync(name)
+            .then((addr) => setName.mutateAsync(name))
+            .then(() => onCreate())
+            .catch(console.log)
+        );
+      }}
+    >
+      <Label>Enter your ENS name</Label>
+      <Input
+        name="name"
+        autoFocus
+        required
+        min={3}
+        max={10}
+        className="w-full"
+      />
+      <div className="flex gap-1">
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          Skip
+        </Button>
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          Go!
+        </Button>
+      </div>
+
+      <span className="py-4 text-center text-xs text-red-600">
+        {(ens.error as Error)?.message}
+      </span>
+    </form>
+  );
+};
+
 const Create: NextPage = () => {
   const router = useRouter();
   const mnemonic = router.query.key as string;
@@ -19,34 +67,9 @@ const Create: NextPage = () => {
     mnemonic && createWallet(mnemonic);
   }, [mnemonic]);
 
-  const storedName = storage.get(NAME_KEY);
-
   return (
     <Layout>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const target = e.target as HTMLFormElement;
-          const { name } = Object.fromEntries(new FormData(target));
-
-          storage.set(NAME_KEY, name as string);
-
-          router.push("/");
-        }}
-        className="flex flex-col gap-2 pt-24"
-      >
-        <Label>Enter your name</Label>
-        <Input
-          name="name"
-          autoFocus
-          required
-          min={3}
-          max={10}
-          defaultValue={storedName}
-          className="w-full"
-        />
-        <Button className="w-full">Go!</Button>
-      </form>
+      <EnsForm onCreate={() => router.push("/")} />
     </Layout>
   );
 };
