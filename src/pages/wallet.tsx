@@ -32,7 +32,7 @@ const Wallet: NextPage = () => {
             {(+(balance.data || "0")).toFixed(4)}
           </span>
         </Skeleton>{" "}
-        ETH.
+        xDAI.
       </P>
 
       <Input className="mb-8 w-full text-sm" value={wallet?.address} />
