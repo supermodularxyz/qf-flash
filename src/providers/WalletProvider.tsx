@@ -18,12 +18,10 @@ export const useWallet = () => useContext(WalletContext);
 
 const MNEMONIC_KEY = "mnemonic";
 
-const alchemyKey = process.env.NEXT_PUBLIC_ALCHEMY_ID as string;
 export const WalletProvider = ({
   children,
   rpcUrl,
 }: { rpcUrl: string } & PropsWithChildren) => {
-  const storedMnemonic = storage.get(MNEMONIC_KEY);
   const [state, setState] = useState<Omit<Context, "createWallet">>({
     wallet: null,
     isLoading: true,
@@ -45,9 +43,10 @@ export const WalletProvider = ({
     [rpcUrl]
   );
 
+  const storedMnemonic = storage.get(MNEMONIC_KEY);
   useEffect(() => {
     if (storedMnemonic && !state.wallet) {
-      const wallet = createWallet(storedMnemonic);
+      createWallet(storedMnemonic);
     }
     setState((s) => ({ ...s, isLoading: false }));
   }, [storedMnemonic]);

@@ -2,4 +2,3 @@
 /* tslint:disable */
 /* eslint-disable */
 export { QFToken__factory } from "./QFToken__factory";
-export { Erc777__factory } from "./Erc777__factory";

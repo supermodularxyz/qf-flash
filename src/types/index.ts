@@ -2,7 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { QFToken } from "./QFToken";
-export type { Erc777 } from "./Erc777";
 export * as factories from "./factories";
-export { Erc777__factory } from "./factories/Erc777__factory";
 export { QFToken__factory } from "./factories/QFToken__factory";

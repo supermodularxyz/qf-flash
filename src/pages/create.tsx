@@ -22,14 +22,12 @@ const EnsForm = ({ onCreate = () => Promise.resolve({}) }) => {
         const target = e.target as HTMLFormElement;
         const name = Object.fromEntries(new FormData(target)).name as string;
 
-        return (
-          ens
-            // Resolve ENS to address to verify it exists
-            .mutateAsync(name)
-            .then((addr) => setName.mutateAsync(name))
-            .then(() => onCreate())
-            .catch(console.log)
-        );
+        ens
+          // Resolve ENS to address to verify it exists
+          .mutateAsync(name)
+          .then((addr) => setName.mutateAsync(name))
+          .then(() => onCreate())
+          .catch(console.log);
       }}
     >
       <Label>Enter your ENS name</Label>
