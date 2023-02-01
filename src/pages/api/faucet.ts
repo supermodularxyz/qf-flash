@@ -44,7 +44,7 @@ interface ApiRequest extends NextApiRequest {
 export default async function handler(req: ApiRequest, res: NextApiResponse) {
   try {
     await faucet(req.body?.address);
-    res.status(200).json({ name: "John Doe" });
+    res.status(200).json({ success: true });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error sending ETH" });
