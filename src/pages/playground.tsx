@@ -53,7 +53,6 @@ const Playground: NextPage = () => {
               </h4>
               <div className="grid grid-cols-2 gap-4">
                 {Object.entries(group).map(([address, mnemonic]) => {
-                  console.log(mnemonic);
                   return (
                     <Link
                       key={address}
