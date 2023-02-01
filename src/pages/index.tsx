@@ -25,8 +25,14 @@ const FlowerQR = () => {
   );
 };
 
+const roleInstructions = [
+  "",
+  "Scan another attendees QR code to vote for them",
+  "Show your QR to receive tokens",
+];
 const Instructions = () => {
   const tokens = useTokenBalance();
+  const role = useRole();
   return (
     <div className="text-sm">
       <P>There is $10k at stake, which will be distributed via QF.</P>
@@ -39,7 +45,9 @@ const Instructions = () => {
         </Skeleton>{" "}
         tokens in your wallet.
       </P>
-      <P>Scan another attendees QR code to vote for them</P>
+      <Skeleton isLoading={role.isLoading}>
+        {roleInstructions[role.data || 0]}
+      </Skeleton>
     </div>
   );
 };
