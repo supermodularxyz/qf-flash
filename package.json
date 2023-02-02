@@ -24,7 +24,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.42.1",
+    "react-particles": "^2.8.0",
     "react-qr-code": "^2.0.11",
+    "tsparticles": "^2.8.0",
     "zod": "^3.20.2"
   },
   "devDependencies": {
