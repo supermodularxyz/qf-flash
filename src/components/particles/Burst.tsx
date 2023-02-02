@@ -39,18 +39,6 @@ export const Burst = () => (
               fill: true,
               particles: { color: { value: "#eab308" } },
             },
-            // polygon: [
-            //   {
-            //     sides: 5,
-            //     fill: true,
-            //     particles: { color: "#facc15" },
-            //   },
-            //   {
-            //     sides: 6,
-            //     fill: true,
-            //     particles: { color: "#facc15" },
-            //   },
-            // ],
           },
         },
         opacity: {
