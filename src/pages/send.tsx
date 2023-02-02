@@ -9,6 +9,7 @@ import { Button } from "components/Button";
 import { useSend } from "hooks/useSend";
 import { useTokenBalance } from "hooks/useBalance";
 import { storage } from "utils/storage";
+import { Burst } from "components/particles/Burst";
 
 const isRoleError = (err: unknown) =>
   (err as Error)?.message?.includes?.("Must fulfill roles");
@@ -33,6 +34,9 @@ const Send: NextPage = () => {
           const to = router.query.address as string;
           const name = storage.get("name") as string;
 
+          router.push("/success");
+
+          return;
           send
             .mutateAsync({ to, amount, name })
             .then(() => router.push("/"))
@@ -57,20 +61,24 @@ const Send: NextPage = () => {
               Reset
             </Button>
           </div>
-          <div className="mb-16 flex justify-center">
+          <div className="relative flex justify-center pt-16 pb-16">
             <button
+              id="send-button"
               disabled={send.isLoading}
               type="button"
-              className="flex h-16 w-16 cursor-pointer touch-manipulation items-center justify-center rounded-full bg-gray-200 transition-colors hover:bg-gray-300 active:bg-gray-100"
+              className="rounded-full bg-transparent text-6xl duration-[60ms] active:scale-75"
+              // className="flex h-32 w-32 cursor-pointer touch-manipulation items-center justify-center rounded-full bg-gray-200 text-6xl transition-colors hover:bg-gray-300 active:bg-gray-100"
               onClick={() => dispatch("inc")}
             >
-              <Zap />
+              {"🌼"}
             </button>
+            <Burst />
           </div>
-          <div className="flex justify-center">
+          <div className="mx-auto flex w-48 justify-center">
             <Button
-              className=""
+              className="w-full"
               type="submit"
+              intent={"primary"}
               disabled={!amount || send.isLoading}
             >
               {send.isLoading ? "Sending..." : "Send"}
