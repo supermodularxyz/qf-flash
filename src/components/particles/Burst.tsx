@@ -57,7 +57,7 @@ export const Burst = () => (
           value: { min: 1, max: 10 },
           animation: {
             enable: true,
-            speed: { min: 40, max: 80 },
+            speed: { min: 40, max: 120 },
             sync: true,
             startValue: "max",
             destroy: "min",
@@ -71,14 +71,14 @@ export const Burst = () => (
       },
       interactivity: {
         events: {
-          onDiv: {
-            enable: true,
-            mode: "push",
-            elementId: "send-button",
-          },
           onClick: {
             enable: true,
             mode: "push",
+          },
+        },
+        modes: {
+          push: {
+            quantity: 15,
           },
         },
       },

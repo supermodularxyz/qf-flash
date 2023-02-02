@@ -62,7 +62,7 @@ const Send: NextPage = () => {
             <button
               disabled={send.isLoading}
               type="button"
-              className="select-none rounded-full bg-transparent text-6xl duration-[60ms] active:scale-75"
+              className="select-none rounded-full bg-transparent text-7xl duration-[60ms] active:scale-75"
               // className="flex h-32 w-32 cursor-pointer touch-manipulation items-center justify-center rounded-full bg-gray-200 text-6xl transition-colors hover:bg-gray-300 active:bg-gray-100"
               onClick={() => dispatch("inc")}
             >
