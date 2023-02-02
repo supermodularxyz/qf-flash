@@ -34,12 +34,9 @@ const Send: NextPage = () => {
           const to = router.query.address as string;
           const name = storage.get("name") as string;
 
-          router.push("/success");
-
-          return;
           send
             .mutateAsync({ to, amount, name })
-            .then(() => router.push("/"))
+            .then(() => router.push("/success"))
             .catch(console.log);
         }}
       >
