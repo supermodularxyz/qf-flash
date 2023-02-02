@@ -1,13 +1,10 @@
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
-import { Layout } from "layouts/Layout";
-import dynamic from "next/dynamic";
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { BaseLayout } from "layouts/BaseLayout";
 
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-import type { Container, Engine } from "tsparticles-engine";
 import { Button } from "components/Button";
 import Link from "next/link";
 

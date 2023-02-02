@@ -24,7 +24,7 @@ export const Burst = () => (
         //   color: { value: "#000000" },
         //   width: 1,
         // },
-        shape: {
+        shapes: {
           type: ["circle", "square", "triangle"],
           options: {
             circle: {
