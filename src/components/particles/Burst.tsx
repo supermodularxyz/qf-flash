@@ -24,20 +24,20 @@ export const Burst = () => (
         //   color: { value: "#000000" },
         //   width: 1,
         // },
-        shapes: {
+        shape: {
           type: ["circle", "square", "triangle"],
           options: {
             circle: {
               fill: true,
-              particles: { color: "#facc15" },
+              particles: { color: { value: "#facc15" } },
             },
             square: {
               fill: true,
-              particles: { color: "#fde047" },
+              particles: { color: { value: "#fde047" } },
             },
             triangle: {
               fill: true,
-              particles: { color: "#eab308" },
+              particles: { color: { value: "#eab308" } },
             },
             // polygon: [
             //   {

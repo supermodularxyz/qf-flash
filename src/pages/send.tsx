@@ -58,7 +58,7 @@ const Send: NextPage = () => {
               Reset
             </Button>
           </div>
-          <div className="relative flex justify-center pt-16 pb-16">
+          <div className="relative flex select-none justify-center pt-16 pb-16">
             <button
               id="send-button"
               disabled={send.isLoading}
