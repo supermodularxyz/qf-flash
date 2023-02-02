@@ -16,14 +16,7 @@ export const Burst = () => (
       fullScreen: false,
       detectRetina: true,
       particles: {
-        number: {
-          value: 0,
-        },
-
-        // stroke: {
-        //   color: { value: "#000000" },
-        //   width: 1,
-        // },
+        number: { value: 0 },
         shape: {
           type: ["circle", "square", "triangle"],
           options: {
@@ -39,18 +32,6 @@ export const Burst = () => (
               fill: true,
               particles: { color: { value: "#eab308" } },
             },
-          },
-        },
-        opacity: {
-          value: 1,
-        },
-        rotate: {
-          value: { min: 0, max: 360 },
-          direction: "random",
-          animation: {
-            enable: true,
-            sync: true,
-            speed: { min: 15, max: 30 },
           },
         },
         size: {

@@ -202,7 +202,7 @@ const Bee = () => (
   </svg>
 );
 
-const Leaves = () => {
+export const Leaves = () => {
   return (
     <Particles
       id="tsparticles"

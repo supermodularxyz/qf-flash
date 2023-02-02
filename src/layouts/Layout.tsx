@@ -1,12 +1,12 @@
-import { useIsFetching } from "@tanstack/react-query";
+import { PropsWithChildren, ReactNode } from "react";
 import clsx from "clsx";
-import { Button } from "components/Button";
-import { Wallet, Zap } from "lucide-react";
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useIsFetching } from "@tanstack/react-query";
+import { Wallet, Zap } from "lucide-react";
+
+import { Button } from "components/Button";
 import { useWallet } from "providers/WalletProvider";
-import { PropsWithChildren, ReactNode } from "react";
 import { BaseLayout } from "./BaseLayout";
 
 const Logo = () => {

@@ -51,6 +51,7 @@ const Instructions = () => {
     </div>
   );
 };
+
 const Home: NextPage = () => {
   return (
     <Layout fab={<ScanButton />}>

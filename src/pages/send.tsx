@@ -1,7 +1,6 @@
-import { useReducer } from "react";
 import { type NextPage } from "next";
+import { useReducer } from "react";
 import { useRouter } from "next/router";
-import { Zap } from "lucide-react";
 
 import { Layout } from "layouts/Layout";
 import { Label } from "components/Form";
@@ -63,7 +62,6 @@ const Send: NextPage = () => {
               disabled={send.isLoading}
               type="button"
               className="select-none rounded-full bg-transparent text-7xl duration-[60ms] active:scale-75"
-              // className="flex h-32 w-32 cursor-pointer touch-manipulation items-center justify-center rounded-full bg-gray-200 text-6xl transition-colors hover:bg-gray-300 active:bg-gray-100"
               onClick={() => dispatch("inc")}
             >
               {"🌼"}
@@ -83,6 +81,8 @@ const Send: NextPage = () => {
           <span className="py-4 text-center text-xs text-red-600">
             {isRoleError(send.error)
               ? "Flowers cannot send tokens to Bees"
+              : send.error
+              ? "Unknown error"
               : ""}
           </span>
         </div>

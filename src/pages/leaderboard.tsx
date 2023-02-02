@@ -26,7 +26,7 @@ const createLoadingProjects = (length = 2) =>
 const Name = ({ children = "" }) => {
   const name = useName(children);
   return (
-    <Skeleton className="w-12" isLoading={name.isLoading}>
+    <Skeleton className="w-full" isLoading={name.isLoading}>
       {name.data || truncate(children)}
     </Skeleton>
   );

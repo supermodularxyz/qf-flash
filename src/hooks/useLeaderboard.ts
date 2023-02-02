@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { parseBytes32String } from "ethers/lib/utils";
 import { useWallet } from "providers/WalletProvider";
 import { getContract } from "utils/getContract";
 import { sum } from "utils/math";
