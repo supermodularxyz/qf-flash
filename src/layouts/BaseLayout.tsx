@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
 
-const APP_NAME = "QF Flash Game";
+export const APP_NAME = "QuadHoney";
 const APP_DESCRIPTION = `There is $10k at stake, which will be distributed via QF. You have 100 tokens in your wallet. Scan another attendees QR code to vote for them`;
 
 export const BaseLayout = ({ children }: PropsWithChildren) => {
@@ -10,7 +10,7 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Head>
-        <title>QF Flash Game</title>
+        <title>{APP_NAME}</title>
         <meta name="application-name" content={APP_NAME} />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

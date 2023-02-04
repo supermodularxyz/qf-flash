@@ -7,7 +7,7 @@ import { Hexagon, Wallet } from "lucide-react";
 
 import { Button } from "components/Button";
 import { useWallet } from "providers/WalletProvider";
-import { BaseLayout } from "./BaseLayout";
+import { APP_NAME, BaseLayout } from "./BaseLayout";
 
 const Logo = () => {
   const isFetching = useIsFetching();
@@ -26,7 +26,7 @@ const Logo = () => {
           className={clsx("absolute left-0 top-0  h-4 w-4 text-gray-800 ")}
         />
       </div>
-      QuadHoney
+      {APP_NAME}
     </Link>
   );
 };
