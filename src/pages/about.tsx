@@ -15,7 +15,7 @@ const About: NextPage = () => {
       <div className="flex justify-around gap-4 pt-8">
         <div>
           <div className="mb-2 text-center text-6xl">{"🌼"}</div>
-          <div>Build projects</div>
+          <div>Building projects</div>
         </div>
         <div>
           <div className="mb-2 text-center text-6xl">{"🐝"}</div>

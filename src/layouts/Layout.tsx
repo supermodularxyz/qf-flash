@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useIsFetching } from "@tanstack/react-query";
-import { Wallet, Zap } from "lucide-react";
+import { Hexagon, Wallet } from "lucide-react";
 
 import { Button } from "components/Button";
 import { useWallet } from "providers/WalletProvider";
@@ -14,14 +14,19 @@ const Logo = () => {
   return (
     <Link
       href={"/"}
-      className="flex pl-1 text-xs font-bold tracking-widest hover:text-gray-600"
+      className="flex pl-1 text-xs font-bold tracking-widest hover:text-amber-700"
     >
-      <Zap
-        className={clsx("mr-2 h-4 w-4 transition-colors", {
-          ["animate-ping text-yellow-500"]: isFetching,
-        })}
-      />
-      QF flash
+      <div className="relative -top-0.5 mr-1">
+        <Hexagon
+          className={clsx("h-4 w-4  transition-colors", {
+            ["animate-ping text-amber-700"]: isFetching,
+          })}
+        />
+        <Hexagon
+          className={clsx("absolute left-0 top-0  h-4 w-4 text-gray-800 ")}
+        />
+      </div>
+      QuadHoney
     </Link>
   );
 };
@@ -37,23 +42,23 @@ export const Layout = ({
 
   return (
     <BaseLayout>
-      <header className="flex items-center justify-between p-1">
+      <header className="flex items-center justify-between bg-amber-300 p-1">
         <Logo />
         <div className="flex items-center gap-1 text-xs">
           <NavLink label="Leaderboard" href={`/leaderboard`} />
           <NavLink label="What is this?" href={`/about`} />
           <Link href={`/wallet`} className="">
-            <Button className="rounded-full py-2 px-2">
+            <Button intent={"ghost"} className="rounded-full py-2 px-2">
               <Wallet className="h-4 w-4" />
             </Button>
           </Link>
         </div>
       </header>
-      <div className="h-[2px] bg-gradient-to-r from-fuchsia-500 via-red-500  to-yellow-500 " />
+      <div className="h-[2px] bg-gradient-to-r from-amber-300   to-amber-600 " />
       <div className="p-4">
         {isLoading ? (
           <Alert>
-            <div className="h-8 w-8 animate-ping rounded-full border-4 border-fuchsia-500" />
+            <div className="h-8 w-8 animate-ping rounded-full border-4 border-amber-400" />
           </Alert>
         ) : wallet ? (
           children
@@ -78,7 +83,7 @@ const NavLink = ({ href = "", label = "" }) => {
   const isActive = router.asPath === href;
   return (
     <Link
-      className={clsx("rounded p-3 hover:bg-gray-100", {
+      className={clsx("rounded p-3 hover:bg-amber-400", {
         ["underline underline-offset-2"]: isActive,
       })}
       href={href}
