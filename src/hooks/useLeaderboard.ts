@@ -84,11 +84,13 @@ const mapProjects = (projects: Projects) => {
 };
 
 const mapBeeScores = (bees: Bees) => {
-  return Object.entries(bees).map(([address, { flowers }]) => {
-    return {
-      address,
-      visited: Object.keys(flowers).length,
-      amount: sum(Object.values(flowers)),
-    };
-  });
+  return Object.entries(bees)
+    .map(([address, { flowers }]) => {
+      return {
+        address,
+        visited: Object.keys(flowers).length,
+        amount: sum(Object.values(flowers)),
+      };
+    })
+    .sort((a, b) => (a.visited > b.visited ? -1 : 1));
 };
