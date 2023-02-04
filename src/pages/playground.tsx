@@ -1,10 +1,10 @@
 import { type NextPage } from "next";
 import Link from "next/link";
 
-import { BaseLayout } from "layouts/BaseLayout";
 import { P } from "components/Text";
 import QRCode from "react-qr-code";
 import { truncate } from "utils/truncate";
+import { PropsWithChildren } from "react";
 
 const wallets = {
   sender: {
@@ -33,9 +33,13 @@ const wallets = {
   },
 };
 
+const PlaygroundLayout = ({ children }: PropsWithChildren) => (
+  <main className="container mx-auto">{children}</main>
+);
+
 const Playground: NextPage = () => {
   return (
-    <BaseLayout>
+    <PlaygroundLayout>
       <div className="p-4">
         <div className="mb-4 text-sm uppercase tracking-widest">
           Select a wallet
@@ -51,7 +55,7 @@ const Playground: NextPage = () => {
               <h4 className="text-xs uppercase tracking-widest">
                 {role} wallets
               </h4>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
                 {Object.entries(group).map(([address, mnemonic]) => {
                   return (
                     <Link
@@ -61,7 +65,7 @@ const Playground: NextPage = () => {
                       <div className="rounded-lg p-2 transition-colors hover:bg-gray-100">
                         <div className="mb-2 flex justify-center">
                           <QRCode
-                            className="h-32 w-32 rounded-lg"
+                            className="h-32 w-32 rounded-lg sm:h-64 sm:w-64"
                             value={address}
                           />
                         </div>
@@ -75,7 +79,7 @@ const Playground: NextPage = () => {
           ))}
         </div>
       </div>
-    </BaseLayout>
+    </PlaygroundLayout>
   );
 };
 

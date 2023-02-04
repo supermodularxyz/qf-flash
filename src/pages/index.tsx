@@ -57,10 +57,8 @@ const Home: NextPage = () => {
     <Layout fab={<ScanButton />}>
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-sm uppercase tracking-widest">
-            Welcome to the
-          </div>
-          <h3 className="mb-2 text-2xl">QF Flash Game</h3>
+          <div className="text-sm uppercase tracking-widest">Welcome to</div>
+          <h3 className="mb-2 text-2xl">Quadratic Honey</h3>
         </div>
         <Profile />
       </div>
