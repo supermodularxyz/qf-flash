@@ -7,6 +7,7 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import { Button } from "components/Button";
 import Link from "next/link";
+import { Leaves } from "components/particles/Leaves";
 
 const Bee = () => (
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -202,109 +203,6 @@ const Bee = () => (
   </svg>
 );
 
-export const Leaves = () => {
-  return (
-    <Particles
-      id="tsparticles"
-      init={loadFull}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-      }}
-      options={{
-        fullScreen: false,
-        detectRetina: true,
-        particles: {
-          stroke: {
-            width: 3,
-            color: {
-              value: ["#22c55e"],
-            },
-          },
-          move: {
-            angle: {
-              value: 0,
-              offset: 0,
-            },
-            direction: "bottom-left",
-            enable: true,
-            outModes: {
-              default: "out",
-            },
-            speed: 20,
-          },
-          number: {
-            value: 80,
-            limit: 300,
-          },
-          opacity: {
-            value: 1,
-          },
-          rotate: {
-            value: {
-              min: 0,
-              max: 60,
-            },
-            direction: "random",
-            move: true,
-            animation: {
-              enable: true,
-              speed: 20,
-            },
-          },
-          tilt: {
-            direction: "random",
-            enable: true,
-            move: true,
-            value: {
-              min: 0,
-              max: 360,
-            },
-            animation: {
-              enable: true,
-              speed: 6,
-            },
-          },
-          shape: {
-            type: "line",
-          },
-          size: {
-            value: 15,
-          },
-          roll: {
-            darken: {
-              enable: true,
-              value: 30,
-            },
-            enlighten: {
-              enable: true,
-              value: 30,
-            },
-            enable: true,
-            mode: "both",
-            speed: {
-              min: 3,
-              max: 6,
-            },
-          },
-          wobble: {
-            distance: 50,
-            enable: true,
-            move: true,
-            speed: {
-              min: -1,
-              max: 1,
-            },
-          },
-        },
-      }}
-    />
-  );
-};
-
 const Success: NextPage = () => {
   const router = useRouter();
 
@@ -319,7 +217,7 @@ const Success: NextPage = () => {
       <div className="h-full overflow-hidden bg-green-100">
         <div className="">
           <div>
-            <div className="mt-24 text-center text-2xl font-bold uppercase tracking-widest text-green-600">
+            <div className="mt-24 text-center text-2xl font-bold uppercase tracking-widest text-green-900">
               Awesome!
             </div>
           </div>
