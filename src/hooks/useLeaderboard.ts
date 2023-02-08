@@ -92,5 +92,11 @@ const mapBeeScores = (bees: Bees) => {
         amount: sum(Object.values(flowers)),
       };
     })
-    .sort((a, b) => (a.visited > b.visited ? -1 : 1));
+    .sort((a, b) => {
+      if (a.visited === b.visited) {
+        return a.amount > b.amount ? -1 : 1;
+      }
+
+      return a.visited > b.visited ? -1 : 1;
+    });
 };
