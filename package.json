@@ -9,7 +9,10 @@
   "scripts": {
     "dev": "pnpm --filter app run dev",
     "build": "pnpm turbo build",
-    "hardhat:node": "pnpm --filter hardhat run node"
+    "hardhat:node": "pnpm --filter contracts run node",
+    "hardhat:test": "pnpm --filter contracts run test",
+    "generate-abi": "pnpm --filter contracts run generate-abi",
+    "generate-types": "pnpm --filter app run generate-types"
   },
   "dependencies": {
     "turbo": "^1.7.4"
