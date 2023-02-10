@@ -32,9 +32,6 @@ export function splitWalletsIntoRoles(wallets: Wallet[], ratio = 0.3) {
   return accounts;
 }
 
-const delay = async (ms = 1000) =>
-  new Promise((r) => setTimeout(() => r({}), ms));
-
 export async function configureRolesAndTranferTokens(
   accounts: AccountMap,
   token: QFToken,
@@ -42,21 +39,18 @@ export async function configureRolesAndTranferTokens(
   opts = { eth: "0.001" }
 ) {
   console.log(`Configuring roles and transfering tokens...`);
-  const gasLimit = 10000000;
   for (const role in accounts) {
     for (const mnemonic of Object.values(accounts[role])) {
       const { address } = Wallet.fromMnemonic(mnemonic);
 
       console.log("Setting role for:", address, role);
-      await token.setRole(address, roles[role as keyof typeof roles], {
-        gasLimit,
-      });
+      await token.setRole(address, roles[role as keyof typeof roles]);
 
       if (role === "sender") {
         // Make sure tokens haven't been sent to this address already (sometimes some of the transactions fail)
         if ((await token.balanceOf(address)).eq(0)) {
           console.log("Transfering tokens to:", address);
-          await token.mint(address, 100, { gasLimit });
+          await token.mint(address, 100);
         }
 
         if ((await funder.provider?.getBalance(address))?.eq(0)) {
@@ -64,11 +58,9 @@ export async function configureRolesAndTranferTokens(
           await funder.sendTransaction({
             to: address,
             value: ethers.utils.parseEther(opts.eth),
-            gasLimit,
           });
         }
       }
-      // await delay(1000);
     }
   }
 }
