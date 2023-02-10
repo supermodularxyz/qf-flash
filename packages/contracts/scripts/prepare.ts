@@ -1,25 +1,22 @@
 import { ethers, network } from "hardhat";
-import { createWallets } from "../utils/createWallets";
 import { configureRolesAndTranferTokens } from "../utils/prepareWallets";
+import { loadWallets } from "../utils/saveWallets";
 
 async function main() {
   const [owner] = await ethers.getSigners();
 
-  const contractAddress = process.env.CONTRACT_ADDRESS as string;
+  const contractAddress =
+    process.env.CONTRACT_ADDRESS ||
+    "0x5FbDB2315678afecb367f032d93F642f64180aa3"; // Hardhat addresss
+
   const token = await ethers.getContractAt("QFToken", contractAddress);
-  const testWallets =
-    Boolean(process.env.TEST_WALLETS) || network.name === "localhost";
 
-  const wallets = createWallets(10, testWallets);
-
-  const accounts = await configureRolesAndTranferTokens(wallets, token, owner, {
-    ratio: 0.3,
+  const accounts = await loadWallets();
+  await configureRolesAndTranferTokens(accounts, token, owner, {
     eth: "0.001",
   });
 
-  // TODO: Generate QR SVGs
-
-  console.log("Wallets created", accounts);
+  console.log("Wallets funded!");
 }
 
 // We recommend this pattern to be able to use async/await everywhere

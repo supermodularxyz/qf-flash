@@ -7,49 +7,68 @@ const roleMap = {
   2: "receiver",
 };
 const roles = {
-  Sender: 1,
-  Receiver: 2,
+  sender: 1,
+  receiver: 2,
 } as const;
 
-type AccountMap = { [role: string]: { [address: string]: string } };
+export type AccountMap = { [role: string]: { [address: string]: string } };
 
-export async function configureRolesAndTranferTokens(
-  wallets: Wallet[],
-  token: QFToken,
-  funder: SignerWithAddress,
-  opts = { ratio: 0.15, eth: "0.001" }
-) {
+export function splitWalletsIntoRoles(wallets: Wallet[], ratio = 0.3) {
   let i = 0;
+  console.log(`Splitting ${wallets.length} wallets with ratio: ${ratio}`);
   const accounts = {
-    [roleMap[roles.Sender]]: {},
-    [roleMap[roles.Receiver]]: {},
+    [roleMap[roles.sender]]: {},
+    [roleMap[roles.receiver]]: {},
   } as AccountMap;
 
   for (const w of wallets) {
     // Get role according to distribution
-    const role = i < wallets.length * (1 - opts.ratio) ? 1 : 2;
+    const role = i < wallets.length * (1 - ratio) ? 1 : 2;
 
     // Set account with role, address and mnemonic
     accounts[roleMap[role]][w.address] = w.mnemonic.phrase;
-
-    // Set sender or receiver role
-    console.log("Setting role for address:", w.address, role);
-    await token.setRole(w.address, role);
-
-    // Give 100 tokens to senders
-    if (role === roles.Sender) {
-      // Make sure tokens haven't been sent to this address already (sometimes some of the transactions fail)
-      if ((await token.balanceOf(w.address)).eq(0)) {
-        console.log("Transfering tokens to:", w.address);
-        await token.mint(w.address, 100);
-      }
-      console.log("Sending ETH to:", w.address);
-      await funder.sendTransaction({
-        to: w.address,
-        value: ethers.utils.parseEther(opts.eth),
-      });
-    }
     i++;
   }
   return accounts;
+}
+
+const delay = async (ms = 1000) =>
+  new Promise((r) => setTimeout(() => r({}), ms));
+
+export async function configureRolesAndTranferTokens(
+  accounts: AccountMap,
+  token: QFToken,
+  funder: SignerWithAddress,
+  opts = { eth: "0.001" }
+) {
+  console.log(`Configuring roles and transfering tokens...`);
+  const gasLimit = 10000000;
+  for (const role in accounts) {
+    for (const mnemonic of Object.values(accounts[role])) {
+      const { address } = Wallet.fromMnemonic(mnemonic);
+
+      console.log("Setting role for:", address, role);
+      await token.setRole(address, roles[role as keyof typeof roles], {
+        gasLimit,
+      });
+
+      if (role === "sender") {
+        // Make sure tokens haven't been sent to this address already (sometimes some of the transactions fail)
+        if ((await token.balanceOf(address)).eq(0)) {
+          console.log("Transfering tokens to:", address);
+          await token.mint(address, 100, { gasLimit });
+        }
+
+        if ((await funder.provider?.getBalance(address))?.eq(0)) {
+          console.log("Transfering ETH to:", address);
+          await funder.sendTransaction({
+            to: address,
+            value: ethers.utils.parseEther(opts.eth),
+            gasLimit,
+          });
+        }
+      }
+      // await delay(1000);
+    }
+  }
 }

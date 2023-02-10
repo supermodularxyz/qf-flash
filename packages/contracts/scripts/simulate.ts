@@ -1,7 +1,10 @@
 import { Wallet } from "ethers";
 import { ethers } from "hardhat";
 import { createWallets } from "../utils/createWallets";
-import { configureRolesAndTranferTokens } from "../utils/prepareWallets";
+import {
+  configureRolesAndTranferTokens,
+  splitWalletsIntoRoles,
+} from "../utils/prepareWallets";
 
 /*
 Experimental script to simulate 100 wallets sending their tokens
@@ -16,9 +19,9 @@ async function main() {
   );
 
   const wallets = createWallets(100);
+  const accounts = splitWalletsIntoRoles(wallets);
 
-  const accounts = await configureRolesAndTranferTokens(wallets, token, owner, {
-    ratio: 0.4,
+  await configureRolesAndTranferTokens(accounts, token, owner, {
     eth: "0.001",
   });
 
@@ -70,9 +73,6 @@ main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
-const delay = async (ms = 1000) =>
-  new Promise((r) => setTimeout(() => r({}), ms));
 
 const random = (min = 0, max = 1) =>
   Math.floor(Math.random() * (max - min + 1) + min);

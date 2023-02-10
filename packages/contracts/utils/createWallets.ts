@@ -33,6 +33,7 @@ const testWalletsArray = [
 ];
 
 export function createWallets(count: number, test = false) {
+  console.log(`Creating ${count} ${test ? "test" : ""} wallets...`);
   return test
     ? testWalletsArray.map((m) => Wallet.fromMnemonic(m))
     : Array.from({ length: count })
