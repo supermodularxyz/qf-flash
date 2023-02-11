@@ -19,7 +19,9 @@ https://community.supermodular.xyz/t/qf-flash-game/245/3
 > 3. In a “demo day” or “demo booth” kind of environment, it could be used as way of measuring which demos are most legit.
 > 4. As a way of speedrunning collusion attacks to see how they organically develop across conference participants
 
-<img width="23%" src="./screenshots/qf_main.png" />
-<img width="23%" src="./screenshots/qf_send.png" />
-<img width="23%" src="./screenshots/qf_success.png" />
-<img width="23%" src="./screenshots/qf_leaderboard.png" />
+<div>
+    <img width="23%" src="./screenshots/qf_main.png" />
+    <img width="23%" src="./screenshots/qf_send.png" />
+    <img width="23%" src="./screenshots/qf_success.png" />
+    <img width="23%" src="./screenshots/qf_leaderboard.png" />
+</div>
