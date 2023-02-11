@@ -4,19 +4,14 @@ import { getContract } from "utils/getContract";
 import { sum } from "utils/math";
 import { calculateMatch } from "utils/qf";
 
-export type Projects = {
+export type Scores = {
   [address: string]: {
-    funders: { [address: string]: number };
-  };
-};
-
-export type Bees = {
-  [address: string]: {
-    flowers: { [address: string]: number };
+    amounts: { [address: string]: number };
   };
 };
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
+
 export const useLeaderboard = () => {
   const { wallet } = useWallet();
 
@@ -26,43 +21,43 @@ export const useLeaderboard = () => {
       const queryStart = Date.now();
       const contract = getContract(wallet);
 
-      const projects: Projects = {};
-      const bees: Bees = {};
+      const bees: Scores = {};
+      const flowers: Scores = {};
 
-      const events = await contract
+      await contract
+        // Fetch all Transfer events
         .queryFilter(contract.filters.Transfer())
-        .then((events) => {
-          return Promise.all(
+        .then((events) =>
+          Promise.all(
             events
+              // Filter out initial minting transfers
               .filter((e) => e.args.from !== ZERO_ADDRESS)
               .map((e) => {
-                console.log(e);
-                // return {};
                 const { value, from, to } = e.args;
 
-                if (!projects[to]) projects[to] = { funders: {} };
+                // Init empty objects
+                if (!bees[from]) bees[from] = { amounts: {} };
+                if (!flowers[to]) flowers[to] = { amounts: {} };
 
-                projects[to]!.funders[from] =
-                  (projects[to]!.funders[from] || 0) + Number(value);
+                // Add token amounts
+                flowers[to]!.amounts[from] =
+                  (flowers[to]!.amounts[from] || 0) + Number(value);
 
-                if (!bees[from]) bees[from] = { flowers: {} };
-
-                bees[from]!.flowers[to] =
-                  (bees[from]!.flowers[to] || 0) + Number(value);
+                bees[from]!.amounts[to] =
+                  (bees[from]!.amounts[to] || 0) + Number(value);
 
                 return {};
               })
-          );
-        })
+          )
+        )
         .catch((err) => {
-          console.log("error", err);
-          return [];
+          console.log("Error building leaderboard data: ", err);
         });
 
       const queryEnd = Date.now();
       return {
         bees: mapBeeScores(bees),
-        projects: mapProjects(projects),
+        flowers: mapFlowerScores(flowers),
         queryDuration: queryEnd - queryStart,
         lastUpdated: queryEnd,
       };
@@ -71,32 +66,31 @@ export const useLeaderboard = () => {
   );
 };
 
-const mapProjects = (projects: Projects) => {
-  const matches = calculateMatch(projects);
-  return Object.entries(projects)
-    .map(([address, { funders }]) => ({
+const mapFlowerScores = (flowers: Scores) => {
+  const matches = calculateMatch(flowers);
+  return Object.entries(flowers)
+    .map(([address, { amounts }]) => ({
       address,
       matching: matches[address],
-      amount: sum(Object.values(funders)),
-      funders: Object.keys(funders),
+      amount: sum(Object.values(amounts)),
+      funders: Object.keys(amounts),
     }))
     .sort((a, b) => (Number(a.matching) > Number(b.matching) ? -1 : 1));
 };
 
-const mapBeeScores = (bees: Bees) => {
+const mapBeeScores = (bees: Scores) => {
   return Object.entries(bees)
-    .map(([address, { flowers }]) => {
+    .map(([address, { amounts }]) => {
       return {
         address,
-        visited: Object.keys(flowers).length,
-        amount: sum(Object.values(flowers)),
+        visited: Object.keys(amounts).length,
+        amount: sum(Object.values(amounts)),
       };
     })
     .sort((a, b) => {
       if (a.visited === b.visited) {
         return a.amount > b.amount ? -1 : 1;
       }
-
       return a.visited > b.visited ? -1 : 1;
     });
 };

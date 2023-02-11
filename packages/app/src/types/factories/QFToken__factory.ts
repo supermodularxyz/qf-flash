@@ -86,7 +86,7 @@ const _abi = [
       },
       {
         indexed: false,
-        internalType: "enum QF20.Role",
+        internalType: "enum QFToken.Role",
         name: "role",
         type: "uint8",
       },
@@ -253,7 +253,7 @@ const _abi = [
     name: "getRole",
     outputs: [
       {
-        internalType: "enum QF20.Role",
+        internalType: "enum QFToken.Role",
         name: "",
         type: "uint8",
       },
@@ -357,7 +357,7 @@ const _abi = [
         type: "address",
       },
       {
-        internalType: "enum QF20.Role",
+        internalType: "enum QFToken.Role",
         name: "_role",
         type: "uint8",
       },

@@ -52,7 +52,7 @@ const LeaderboardTable = ({
 const Leaderboard: NextPage = () => {
   const { data, isLoading } = useLeaderboard();
 
-  const { bees = [], projects = [], queryDuration, lastUpdated } = data || {};
+  const { bees = [], flowers = [], queryDuration, lastUpdated } = data || {};
 
   const loadingProjects = createLoadingProjects(3);
   return (
@@ -69,7 +69,7 @@ const Leaderboard: NextPage = () => {
           </tr>
         </thead>
         <tbody>
-          {(isLoading ? loadingProjects : projects).map(
+          {(isLoading ? loadingProjects : flowers).map(
             ({ address = "", amount = 0, funders = [], matching = 0 }) => {
               return (
                 <tr key={address}>
@@ -91,7 +91,6 @@ const Leaderboard: NextPage = () => {
                   <td className="w-28 text-right">
                     <Skeleton className="w-12" isLoading={isLoading}>
                       {(matching || 0).toFixed(2)} DAI
-                      {/* {timeAgo(lastFunded)} ago */}
                     </Skeleton>
                   </td>
                 </tr>

@@ -1,28 +1,19 @@
-# Create T3 App
+# QF Flash
+QF Flash or Quadratic Honey is an experiment with burner wallets and Quadratic Funding. Built before ETH Denver 2023
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+https://www.youtube.com/watch?v=7xUtXOh_sJE
 
-## What's next? How do I make an app with this?
+https://community.supermodular.xyz/t/qf-flash-game/245/3
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+> ### A QF Flash Game that takes place at a live event, powered by burner wallets.
+> 1. Users who attend an event receive a burner wallet pre-loaded with 100 QF tokens. One person per wallet.
+> 2. Users are instructed to send tokens to whomever they think is a legit builder during the event. Through the event, users can send QF tokens to one another by using the burner wallet send functionality.
+> 3. At the end of the event, a QF round of 2,000 DAI is paid out. Each QF transaction gets matched quadratically by the DAI.
+> 
+> This QF Flash Game could be used in the following scenarios:
+> 
+> 1. To measure the organic legitimacy of conference participants.
+> 2. As a fun/easy way to dropping tokens on conference attendees.
+> 3. In a “demo day” or “demo booth” kind of environment, it could be used as way of measuring which demos are most legit.
+> 4. As a way of speedrunning collusion attacks to see how they organically develop across conference participants
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
-
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.

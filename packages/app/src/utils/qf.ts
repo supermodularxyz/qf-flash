@@ -1,14 +1,14 @@
-import { Projects } from "hooks/useLeaderboard";
+import { Scores } from "hooks/useLeaderboard";
 
 const MATCHING_POOL = Number(process.env.MATCHING_POOL) || 10_000;
-export const calculateMatch = (projects: Projects) => {
+export const calculateMatch = (projects: Scores) => {
   let summed = 0;
   const matches = {} as { [address: string]: number };
 
-  Object.entries(projects).map(([address, { funders = {} }]) => {
+  Object.entries(projects).map(([address, { amounts = {} }]) => {
     let sumAmount = 0;
 
-    Object.entries(funders).map(
+    Object.entries(amounts).map(
       ([funder, amount]: [string, number]) => (sumAmount += Math.sqrt(amount))
     );
     sumAmount *= sumAmount;
