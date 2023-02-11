@@ -8,28 +8,36 @@ import { PropsWithChildren } from "react";
 
 const wallets = {
   sender: {
-    "0xe1e494B8CF4566C0EC9E06f3b68BfB0C7D670e49":
-      "that actor crew give leopard blade cradle hazard priority favorite joke nurse",
-    "0x1bc7100863B6A754C008A5C9d3cDF05f5Ee6F8EF":
-      "audit end lucky profit gospel meadow pony notice gospel pond bulk review",
-    "0xab85636D3f77B35F69C45d4FDDAc883A7d379307":
-      "smart story picnic juice corn shock garment curious ankle twin digital raccoon",
-    "0xf5EeC8dCE8896c5DB342Dd08A4D4FcBb14919e7A":
-      "pig share nurse trust bid traffic simple vendor female stumble source post",
-    "0x787C97D942Ece2F814Aa72957aC8A35996F6436E":
-      "silk like mountain stairs curious suit giraffe memory ancient two define ready",
-    "0xA7d32606Ba605c893F2Bd8bCC029ef76c5C829E2":
-      "feel company ball special remove urge legend fish lesson hill dynamic mobile",
-    "0xa2BEc0AF10c6b469E3991D61C7a8CaEB93501500":
-      "ostrich attitude antique acid erode document screen gadget apology rule hub rural",
+    "0x36Df1568fD3A66C95dA89114809E57cF746C5Cb8":
+      "vintage monitor later shock ranch verb moon bird sight elder matter sudden",
+    "0x94f1af7353cEe2411be9c5e60787071090e1E765":
+      "olive chimney rate table transfer jewel custom entire patch donate tennis seek",
+    "0x72e2c97d450334927B2131a914c2D793a5004fb3":
+      "again demise negative there comfort enter inner timber receive grain flee agree",
+    "0xF1c2131ca1C81b3a7f20A6B41c42124AdddaC9EF":
+      "useless recipe crisp square machine twin excuse advance receive nothing pool adult",
+    "0xA850b090d489aaE7E6Afae5B38c28E625dce6616":
+      "sad neither either transfer stomach trial other pelican penalty merry chimney glue",
+    "0x3874e67aaB9A78A73b8e0eE9fd425f54DdE1b9eD":
+      "bundle taxi tape arch spare salute tuna group hundred axis muscle galaxy",
+    "0x56300f8fce58d03100039dF1B35118dfE84242bf":
+      "hero jar clinic ring deputy final goose detect sustain bonus mother good",
+    "0xeC94855ee74d667F98E04eB5c6BCF8580A95271b":
+      "cherry whip vapor viable tool quiz text kite frown notice box motor",
+    "0x5bdA180D25F68229B264fCeEEa2ED958701dC56d":
+      "miss know waste tiny awake project huge mix grocery blouse match insect",
+    "0x191601f42041b26F2Aa909FeAe7c9220f281Af59":
+      "seed shift circle evoke vendor april cause already access monkey wing dice",
   },
   receiver: {
-    "0x9C710D3e20692b25032204586c9dc7CcDa012Ab8":
-      "mixture welcome improve stock noble size check obscure scrap cake immune bread",
-    "0x331aF4cAc7d4086Cb56F4E5019f3C454Bb4114e8":
-      "vacant dose violin august yellow want tonight bench myth act fame foil",
-    "0xfa3Dc0a26B02f11Ac23eE3b391Eab64506D24c8D":
-      "worry daring dinosaur walnut slender move nut mirror team harbor faint return",
+    "0xd735E299f309AAB23dCa46FF789d9f2d24188624":
+      "scene muffin lend because hole flower analyst riot result broccoli bottom fancy",
+    "0x4A35D979131E8a3c4eDE5adC01a18853143147FC":
+      "sleep swing anger swallow network hover unusual vicious dose essence donor novel",
+    "0x6EadB2464F29DCd53667034cDD6bd1c40712b13C":
+      "razor grocery owner exit strategy biology tent similar net repair junk boring",
+    "0x1Ae7f0bE77E465B96959cEdD3ff0ef907956A5e4":
+      "impact able jeans morning noble between indoor flee human ball crack cross",
   },
 };
 
