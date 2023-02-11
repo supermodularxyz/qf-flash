@@ -44,23 +44,39 @@ export async function configureRolesAndTranferTokens(
       const { address } = Wallet.fromMnemonic(mnemonic);
 
       console.log("Setting role for:", address, role);
-      await token.setRole(address, roles[role as keyof typeof roles]);
+      await retry(() =>
+        token.setRole(address, roles[role as keyof typeof roles])
+      );
 
       if (role === "sender") {
         // Make sure tokens haven't been sent to this address already (sometimes some of the transactions fail)
         if ((await token.balanceOf(address)).eq(0)) {
           console.log("Transfering tokens to:", address);
-          await token.mint(address, 100);
+          await retry(() => token.mint(address, 100));
         }
 
         if ((await funder.provider?.getBalance(address))?.eq(0)) {
           console.log("Transfering ETH to:", address);
-          await funder.sendTransaction({
-            to: address,
-            value: ethers.utils.parseEther(opts.eth),
-          });
+          await retry(() =>
+            funder.sendTransaction({
+              to: address,
+              value: ethers.utils.parseEther(opts.eth),
+            })
+          );
         }
       }
     }
   }
 }
+
+const retry = (fn: any, ms = 500) =>
+  new Promise((resolve) => {
+    fn()
+      .then(resolve)
+      .catch(() => {
+        setTimeout(() => {
+          console.log("retrying...");
+          retry(fn, ms).then(resolve);
+        }, ms);
+      });
+  });
