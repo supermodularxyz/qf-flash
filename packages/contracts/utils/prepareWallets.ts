@@ -48,21 +48,20 @@ export async function configureRolesAndTranferTokens(
         token.setRole(address, roles[role as keyof typeof roles])
       );
 
+      if ((await funder.provider?.getBalance(address))?.eq(0)) {
+        console.log("Transfering ETH to:", address);
+        await retry(() =>
+          funder.sendTransaction({
+            to: address,
+            value: ethers.utils.parseEther(opts.eth),
+          })
+        );
+      }
       if (role === "sender") {
         // Make sure tokens haven't been sent to this address already (sometimes some of the transactions fail)
         if ((await token.balanceOf(address)).eq(0)) {
           console.log("Transfering tokens to:", address);
           await retry(() => token.mint(address, 100));
-        }
-
-        if ((await funder.provider?.getBalance(address))?.eq(0)) {
-          console.log("Transfering ETH to:", address);
-          await retry(() =>
-            funder.sendTransaction({
-              to: address,
-              value: ethers.utils.parseEther(opts.eth),
-            })
-          );
         }
       }
     }
