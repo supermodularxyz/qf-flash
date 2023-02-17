@@ -74,7 +74,7 @@ const Playground: NextPage = () => {
                         <div className="mb-2 flex justify-center">
                           <QRCode
                             className="h-32 w-32 rounded-lg sm:h-64 sm:w-64"
-                            value={address}
+                            value={`/create?key=${encodeURI(mnemonic)}`}
                           />
                         </div>
                         <div className="text-center">{truncate(address)}</div>
