@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import type { PropsWithChildren, ReactNode } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -74,9 +74,39 @@ export const Layout = ({
         )}
       </div>
       <div className="absolute bottom-8 right-8">{wallet && fab}</div>
+      <Footer />
     </BaseLayout>
   );
 };
+
+const Footer = () => (
+  <div className="absolute bottom-0 w-full">
+    <div className="flex justify-center gap-4 text-[10px] text-gray-400">
+      <div>
+        by{" "}
+        <a
+          href="https://supermodular.xyz"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold hover:text-gray-600"
+        >
+          supermodular
+        </a>
+      </div>
+      <div className="relative text-red-600">
+        ♥<div className="absolute top-[1px]  animate-ping">♥</div>
+      </div>
+      <a
+        href="https://github.com/carlbarrdahl/qf-flash"
+        target="_blank"
+        rel="noreferrer"
+        className="hover:text-gray-600"
+      >
+        view source
+      </a>
+    </div>
+  </div>
+);
 
 const NavLink = ({ href = "", label = "" }) => {
   const router = useRouter();
