@@ -6,6 +6,10 @@ https://www.youtube.com/watch?v=7xUtXOh_sJE
 
 https://community.supermodular.xyz/t/qf-flash-game/245/3
 
+- [WebApp](./packages/app/README.md)
+- [Contracts](./packages/contracts/README.md)
+- [Wallet Export](./packages/wallet-export/README.md)
+
 > ### A QF Flash Game that takes place at a live event, powered by burner wallets.
 >
 > 1. Users who attend an event receive a burner wallet pre-loaded with 100 QF tokens. One person per wallet.
