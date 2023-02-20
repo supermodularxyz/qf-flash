@@ -7,7 +7,10 @@ import { resolve } from "path";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const wallet = ethers.Wallet.fromMnemonic(process.env.MNEMONIC as string);
+const mnemonic = process.env.MNEMONIC as string;
+if (!mnemonic) throw new Error("MNEMONIC not configured in .env file");
+
+const wallet = ethers.Wallet.fromMnemonic(mnemonic);
 
 const config: HardhatUserConfig = {
   solidity: {

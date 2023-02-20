@@ -48,25 +48,40 @@ Run the tests:
 pnpm run test
 ```
 
+## Create Wallets
+
+A number of wallets can be generated and later funded with QF tokens and ETH. This will create a `wallets.json` file in `packages/contracts`.
+
+Params:
+
+- `NUM_WALLETS` - how many wallets to generate
+- `RATIO` - ratio between senders and receivers (eg. 20 / 60 ~ 0.3)
+
+```sh
+NUM_WALLETS="100" RATIO="0.2" npx hardhat run scripts/wallets.ts
+```
+
 ## Deployment
 
 Run the following to deploy the contract. Configure the network to either `localhost`, `chiado`, or `gnosis`,
 
 ```sh
-npx hardhat --network localhost run scripts/deploy.ts`
+npx hardhat --network localhost run scripts/deploy.ts
 ```
 
 The terminal should output the contract address. Use this in the next script:
 
+## Fund Wallets
+
+After we have deployed the contract we can fund the generated wallets with QF Tokens and ETH.
+
+Params:
+
+- `CONTRACT_ADDRESS` - QF Token contract address to use to mint tokens from
+
 ```sh
 CONTRACT_ADDRESS="<deployed contract address>" npx hardhat --network localhost run scripts/prepare.ts
 ```
-
-TODO:
-
-- Generate QR codes for generated wallets
-  - `sender_0xAddress.svg`
-  - `receiver_0xAddress.svg`
 
 ## Generating ABI
 

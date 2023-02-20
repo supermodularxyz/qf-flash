@@ -11,13 +11,14 @@ async function generateSVGs(accounts: AccountMap) {
 
 async function main() {
   const useTestWallets =
-    !Boolean(process.env.NUM_WALLETS) || network.name === "localhost";
+    network.name === "localhost" && !Boolean(process.env.NUM_WALLETS);
 
   const numWallets = Number(process.env.NUM_WALLETS) || 10;
 
+  const ratio = Number(process.env.RATIO) || 0.3;
   const wallets = createWallets(numWallets, useTestWallets);
 
-  const accounts = splitWalletsIntoRoles(wallets);
+  const accounts = splitWalletsIntoRoles(wallets, ratio);
 
   // TODO: Generate QR SVGs
   await generateSVGs(accounts);
