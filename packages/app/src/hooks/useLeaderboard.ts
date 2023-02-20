@@ -62,7 +62,7 @@ export const useLeaderboard = () => {
         lastUpdated: queryEnd,
       };
     },
-    { enabled: Boolean(wallet), refetchInterval: 10000 }
+    { enabled: Boolean(wallet), refetchInterval: 3000 }
   );
 };
 
