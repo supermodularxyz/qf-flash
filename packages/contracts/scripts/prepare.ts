@@ -13,7 +13,7 @@ async function main() {
 
   const accounts = await loadWallets();
   await configureRolesAndTranferTokens(accounts, token, owner, {
-    eth: "0.001",
+    eth: "0.01",
   });
 
   console.log("Wallets funded!");
