@@ -2,13 +2,14 @@
 
 QF Flash or Quadratic Honey is an experiment with burner wallets and Quadratic Funding. Built before ETH Denver 2023
 
+Packages
+
+- [packages/app](./packages/app/README.md)
+- [packages/contracts](./packages/contracts/README.md)
+- [packages/wallet-export](./packages/wallet-export/README.md)
+
+Demo:
 https://www.youtube.com/watch?v=7xUtXOh_sJE
-
-https://community.supermodular.xyz/t/qf-flash-game/245/3
-
-- [WebApp](./packages/app/README.md)
-- [Contracts](./packages/contracts/README.md)
-- [Wallet Export](./packages/wallet-export/README.md)
 
 > ### A QF Flash Game that takes place at a live event, powered by burner wallets.
 >
@@ -22,6 +23,8 @@ https://community.supermodular.xyz/t/qf-flash-game/245/3
 > 2. As a fun/easy way to dropping tokens on conference attendees.
 > 3. In a “demo day” or “demo booth” kind of environment, it could be used as way of measuring which demos are most legit.
 > 4. As a way of speedrunning collusion attacks to see how they organically develop across conference participants
+
+https://community.supermodular.xyz/t/qf-flash-game/245/3
 
 <div>
     <img width="23%" src="./screenshots/qf_main.png" />
