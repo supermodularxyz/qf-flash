@@ -2,8 +2,6 @@
 
 QF Flash or Quadratic Honey is an experiment with burner wallets and Quadratic Funding. Built before ETH Denver 2023
 
-Packages
-
 - [packages/app](./packages/app/README.md)
 - [packages/contracts](./packages/contracts/README.md)
 - [packages/wallet-export](./packages/wallet-export/README.md)

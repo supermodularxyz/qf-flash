@@ -37,7 +37,7 @@ const config: HardhatUserConfig = {
 
 export default config;
 
-task("generate-abi", async (_, hre) => {
+task("abi", async (_, hre) => {
   console.log("Generating ABI...");
   await Promise.all(
     ["QFToken"].map(async (name) => {

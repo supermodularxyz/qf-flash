@@ -88,5 +88,5 @@ CONTRACT_ADDRESS="<deployed contract address>" npx hardhat --network localhost r
 Generate the ABI to the app (`packages/app/src/abi/QFToken.json`)
 
 ```sh
-pnpm run test
+npx hardhat abi
 ```
