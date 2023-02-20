@@ -11,7 +11,7 @@ module.exports = {
       },
       rules: {
         "@typescript-eslint/unbound-method": "off",
-        "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/no-non-null-asserted-optional-chain": "off"
       }
     },
   ],
