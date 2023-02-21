@@ -55,7 +55,7 @@ A number of wallets can be generated and later funded with QF tokens and ETH. Th
 Params:
 
 - `NUM_WALLETS` - how many wallets to generate
-- `RATIO` - ratio between senders and receivers (eg. 20 / 60 ~ 0.3)
+- `RATIO` - ratio between senders and receivers (eg. 20 / 100 = 0.2)
 
 ```sh
 NUM_WALLETS="100" RATIO="0.2" npx hardhat run scripts/wallets.ts
