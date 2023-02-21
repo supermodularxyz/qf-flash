@@ -83,6 +83,27 @@ Params:
 CONTRACT_ADDRESS="<deployed contract address>" npx hardhat --network localhost run scripts/prepare.ts
 ```
 
+## List Wallets
+
+To verify that the wallets have been funded, the following script can be called:
+
+Params:
+
+- `CONTRACT_ADDRESS` - QF Token contract address to use to get balance from
+
+```sh
+CONTRACT_ADDRESS="<deployed contract address>" npx hardhat --network localhost run scripts/list-wallets.ts
+```
+
+It generates an output like this:
+
+```sh
+0x9FC82BCfe7bFE5894Cc8eA50d82E9077dEB92FAD | 0.01 | 100 | sender
+...
+0x1CF718Cf232B2c91d991b95fD67fA2bEA7133c99 | 0.01 | 100 | receiver
+...
+```
+
 ## Generating ABI
 
 Generate the ABI to the app (`packages/app/src/abi/QFToken.json`)
