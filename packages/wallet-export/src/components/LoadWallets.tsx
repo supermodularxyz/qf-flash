@@ -9,7 +9,7 @@ export const LoadWallets = ({ onDrop }: Props) => (
       <div>
         or{" "}
         <input
-          onChange={(e) => onDrop(e.target.files!)}
+          onChange={(e) => onDrop(e.target.files as FileList)}
           className="cursor-pointer"
           type="file"
           accept="application/json"

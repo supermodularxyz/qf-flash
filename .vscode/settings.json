@@ -1,0 +1,7 @@
+{
+    "eslint.workingDirectories": [
+      "./packages/app",
+      "./packages/wallet-export",
+      "./packages/contracts",
+    ]
+  }

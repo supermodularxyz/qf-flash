@@ -1,7 +1,7 @@
 import QRCode from "react-qr-code";
-import { z } from "zod";
+import type { z } from "zod";
 
-import { WalletSchema } from "pages";
+import type { WalletSchema } from "pages";
 import { PrintButton } from "./PrintButton";
 
 type WalletConfig = z.infer<typeof WalletSchema>;

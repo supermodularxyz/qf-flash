@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 const alertVariants = {
   error: "border-red-400 bg-red-50",
