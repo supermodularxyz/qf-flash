@@ -9,6 +9,7 @@
     "deploy:gnosis": "npx hardhat --network gnosis test"
   },
   "devDependencies": {
+    "app": "workspace:*",
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/providers": "^5.7.2",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.5",

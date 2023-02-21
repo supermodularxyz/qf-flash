@@ -1,6 +1,7 @@
 import { ethers, Wallet } from "ethers";
 import { QFToken } from "../typechain-types";
 import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import { retry } from "./retry";
 
 const roleMap = {
   1: "sender",
@@ -67,15 +68,3 @@ export async function configureRolesAndTranferTokens(
     }
   }
 }
-
-const retry = (fn: any, ms = 500) =>
-  new Promise((resolve) => {
-    fn()
-      .then(resolve)
-      .catch(() => {
-        setTimeout(() => {
-          console.log("retrying...");
-          retry(fn, ms).then(resolve);
-        }, ms);
-      });
-  });

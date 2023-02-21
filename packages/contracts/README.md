@@ -90,3 +90,18 @@ Generate the ABI to the app (`packages/app/src/abi/QFToken.json`)
 ```sh
 npx hardhat abi
 ```
+
+## Transfering Payouts
+
+Query all the transfers, calculate the matching funds, and transfer to the recipients.
+
+Params:
+
+- `CONTRACT_ADDRESS` - QF Token contract address to query for Transfer events
+- `PAYOUT_TOKEN` - Address of token used for payouts
+- `MATCHING_POOL` - Amount of matching funds to distribute
+
+```sh
+CONTRACT_ADDRESS="<deployed contract address>" PAYOUT_TOKEN="<address>" MATCHING_POOL="<amount to distribute>" npx hardhat run --network localhost scripts/payout.ts
+
+```
