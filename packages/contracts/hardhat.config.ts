@@ -22,9 +22,10 @@ const config: HardhatUserConfig = {
       url: "https://goerli.optimism.io",
       accounts: [wallet.privateKey],
     },
+
     gnosis: {
-      url: "https://rpc.gnosischain.com/",
-      gasPrice: 1000000000,
+      url: "https://rpc.gnosischain.com",
+      gasPrice: 3000000000,
       accounts: [wallet.privateKey],
     },
     chiado: {
