@@ -81,28 +81,28 @@ export const Layout = ({
 
 const Footer = () => (
   <div className="absolute bottom-0 w-full">
-    <div className="flex justify-center gap-4 text-[10px] text-gray-400">
+    <div className="flex justify-center gap-2 text-[10px] text-gray-500">
       <div>
         by{" "}
         <a
           href="https://supermodular.xyz"
           target="_blank"
           rel="noreferrer"
-          className="font-bold hover:text-gray-600"
+          className="font-bold hover:text-indigo-600"
         >
           supermodular
         </a>
       </div>
-      <div className="relative text-red-600">
+      <div className="relative text-indigo-500">
         ♥<div className="absolute top-[1px]  animate-ping">♥</div>
       </div>
       <a
-        href="https://github.com/carlbarrdahl/qf-flash"
+        href="https://github.com/supermodularxyz/qf-flash"
         target="_blank"
         rel="noreferrer"
-        className="hover:text-gray-600"
+        className="hover:text-indigo-600"
       >
-        view source
+        &lt;view source\&gt;
       </a>
     </div>
   </div>
