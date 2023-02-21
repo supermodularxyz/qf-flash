@@ -18,11 +18,11 @@ const Instructions = ({ hide = false }) =>
 export const ScanButton = () => {
   // Only show instructions until use has pressed the Scan button
   const [hideInstructions, setHideInstructions] = useState(
-    () => storage.get("instructions") === "hidden"
+    () => storage.get("instructions.scan") === "hidden"
   );
   function handleHideInstructions() {
     setHideInstructions(true);
-    storage.set("instructions", "hidden");
+    storage.set("instructions.scan", "hidden");
   }
 
   // Hide button for Flowers
