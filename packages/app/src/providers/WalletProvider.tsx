@@ -1,5 +1,10 @@
 import { useCallback, useEffect } from "react";
-import { useState, createContext, PropsWithChildren, useContext } from "react";
+import {
+  useState,
+  createContext,
+  type PropsWithChildren,
+  useContext,
+} from "react";
 import { providers, Wallet } from "ethers";
 import { storage } from "utils/storage";
 
@@ -11,7 +16,7 @@ type Context = {
 const WalletContext = createContext<Context>({
   wallet: null,
   isLoading: true,
-  createWallet: (m: string) => null,
+  createWallet: () => null,
 });
 
 export const useWallet = () => useContext(WalletContext);
@@ -35,7 +40,7 @@ export const WalletProvider = ({
       const wallet = Wallet.fromMnemonic(mnemonic).connect(provider);
 
       storage.set(MNEMONIC_KEY, mnemonic);
-      setState((s) => ({ isLoading: false, wallet }));
+      setState({ isLoading: false, wallet });
 
       console.timeEnd("creating wallet");
       return wallet;
@@ -49,7 +54,7 @@ export const WalletProvider = ({
       createWallet(storedMnemonic);
     }
     setState((s) => ({ ...s, isLoading: false }));
-  }, [storedMnemonic]);
+  }, [storedMnemonic, createWallet, state.wallet]);
 
   return (
     <WalletContext.Provider value={{ ...state, createWallet }}>

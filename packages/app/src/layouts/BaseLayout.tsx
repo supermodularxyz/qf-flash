@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { PropsWithChildren, useEffect } from "react";
+import { type PropsWithChildren, useEffect } from "react";
 
 export const APP_NAME = "QuadHoney";
 const APP_DESCRIPTION = `There is $10k at stake, which will be distributed via QF. You have 100 tokens in your wallet. Scan another attendees QR code to vote for them`;

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { P } from "components/Text";
 import QRCode from "react-qr-code";
 import { truncate } from "utils/truncate";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 const wallets = {
   sender: {

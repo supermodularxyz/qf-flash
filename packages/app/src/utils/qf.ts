@@ -1,4 +1,4 @@
-import { Scores } from "hooks/useLeaderboard";
+import type { Scores } from "hooks/useLeaderboard";
 
 const MATCHING_POOL = Number(process.env.MATCHING_POOL) || 10_000;
 export const calculateMatch = (projects: Scores) => {
@@ -9,6 +9,7 @@ export const calculateMatch = (projects: Scores) => {
     let sumAmount = 0;
 
     Object.entries(amounts).map(
+      /* eslint-disable @typescript-eslint/no-unused-vars */
       ([funder, amount]: [string, number]) => (sumAmount += Math.sqrt(amount))
     );
     sumAmount *= sumAmount;

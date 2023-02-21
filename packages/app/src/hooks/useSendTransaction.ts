@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import type { ethers } from "ethers";
 import { useMutation } from "@tanstack/react-query";
 
 import { useWallet } from "providers/WalletProvider";

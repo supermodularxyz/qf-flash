@@ -1,10 +1,6 @@
+import { forwardRef } from "react";
+import type { ComponentPropsWithRef, ReactNode, ElementType } from "react";
 import clsx from "clsx";
-import {
-  ComponentPropsWithRef,
-  forwardRef,
-  ReactNode,
-  ElementType,
-} from "react";
 
 export type PolymorphicRef<C extends React.ElementType> =
   React.ComponentPropsWithRef<C>["ref"];

@@ -1,6 +1,6 @@
 import { providers, Wallet } from "ethers";
 import { isAddress, parseEther } from "ethers/lib/utils";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 /*
 Not in use. Just a sketch of how a faucet might be implemented.

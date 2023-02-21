@@ -1,12 +1,10 @@
 import { type NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { BaseLayout } from "layouts/BaseLayout";
 
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
+import { BaseLayout } from "layouts/BaseLayout";
 import { Button } from "components/Button";
-import Link from "next/link";
 import { Leaves } from "components/particles/Leaves";
 
 const Bee = () => (

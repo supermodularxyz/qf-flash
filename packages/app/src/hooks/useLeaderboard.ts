@@ -40,11 +40,13 @@ export const useLeaderboard = () => {
                 if (!flowers[to]) flowers[to] = { amounts: {} };
 
                 // Add token amounts
+                /* eslint-disable @typescript-eslint/no-non-null-assertion */
                 flowers[to]!.amounts[from] =
                   (flowers[to]!.amounts[from] || 0) + Number(value);
 
                 bees[from]!.amounts[to] =
                   (bees[from]!.amounts[to] || 0) + Number(value);
+                /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
                 return {};
               })

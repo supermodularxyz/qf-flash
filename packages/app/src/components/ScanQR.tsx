@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { BrowserQRCodeReader, IScannerControls } from "@zxing/browser";
+import { BrowserQRCodeReader, type IScannerControls } from "@zxing/browser";
 import type { DecodeContinuouslyCallback } from "@zxing/browser/esm/common/DecodeContinuouslyCallback";
 
 export const ScanQR = ({ onScan }: { onScan: DecodeContinuouslyCallback }) => {
@@ -24,7 +24,7 @@ export const ScanQR = ({ onScan }: { onScan: DecodeContinuouslyCallback }) => {
         setError(error);
       });
     return () => controlsRef.current?.stop();
-  }, []);
+  }, [onScan]);
 
   return (
     <div>

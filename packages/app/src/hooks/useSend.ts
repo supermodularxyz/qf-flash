@@ -5,7 +5,7 @@ import { getContract } from "utils/getContract";
 export const useSend = () => {
   const { wallet } = useWallet();
   return useMutation(
-    ({ to, amount, name }: { to: string; amount: number; name: string }) =>
+    ({ to, amount }: { to: string; amount: number; name: string }) =>
       getContract(wallet).transfer(to, amount)
   );
 };

@@ -25,7 +25,7 @@ const EnsForm = ({ onCreate = () => Promise.resolve({}) }) => {
         ens
           // Resolve ENS to address to verify it exists
           .mutateAsync(name)
-          .then((addr) => setName.mutateAsync(name))
+          .then(() => setName.mutateAsync(name))
           .then(() => onCreate())
           .catch(console.log);
       }}
@@ -68,7 +68,7 @@ const Create: NextPage = () => {
 
   useEffect(() => {
     mnemonic && createWallet(mnemonic);
-  }, [mnemonic]);
+  }, [mnemonic, createWallet]);
 
   return (
     <Layout>

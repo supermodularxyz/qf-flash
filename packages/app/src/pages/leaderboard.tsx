@@ -1,4 +1,5 @@
 import { type NextPage } from "next";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { Layout } from "layouts/Layout";
 import { useLeaderboard } from "hooks/useLeaderboard";
@@ -8,7 +9,6 @@ import { Skeleton } from "components/Skeleton";
 import { useName } from "hooks/useName";
 import { ScanButton } from "components/ScanButton";
 import { roleEmoji } from "utils/roles";
-import { ComponentPropsWithoutRef, ReactNode } from "react";
 
 const createLoadingProjects = (length = 2) =>
   Array.from({ length })
