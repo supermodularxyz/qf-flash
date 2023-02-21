@@ -1,4 +1,4 @@
-import type { Scores } from "hooks/useLeaderboard";
+import type { Scores } from "utils/transfers";
 
 const MATCHING_POOL = Number(process.env.MATCHING_POOL) || 10_000;
 export const calculateMatch = (projects: Scores) => {
