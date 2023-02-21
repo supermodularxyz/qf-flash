@@ -98,6 +98,7 @@ CONTRACT_ADDRESS="<deployed contract address>" npx hardhat --network localhost r
 It generates an output like this:
 
 ```sh
+ADDRESS                                    | xDAI | QF  | ROLE
 0x9FC82BCfe7bFE5894Cc8eA50d82E9077dEB92FAD | 0.01 | 100 | sender
 ...
 0x1CF718Cf232B2c91d991b95fD67fA2bEA7133c99 | 0.01 | 100 | receiver

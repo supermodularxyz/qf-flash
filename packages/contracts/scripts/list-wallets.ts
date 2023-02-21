@@ -10,13 +10,11 @@ async function main() {
     process.env.CONTRACT_ADDRESS ||
     "0x5FbDB2315678afecb367f032d93F642f64180aa3"; // Hardhat addresss
 
-  const eth = utils.formatEther(
-    (await owner.provider?.getBalance(owner.address)) || 0
-  );
-  console.log(eth);
-
   const token = await ethers.getContractAt("QFToken", contractAddress);
   const accounts = await loadWallets();
+
+  console.log(`ADDRESS                                    | xDAI | QF | ROLE`);
+
   for (const role in accounts) {
     for (const address of Object.keys(accounts[role])) {
       const eth = utils.formatEther(
