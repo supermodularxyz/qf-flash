@@ -22,7 +22,7 @@ Open http://localhost:3000
 
 If you make any changes to the contract (`packages/contracts/contracts/QFToken.sol`) you will need to re-generate the ABI and the ts types.
 
-[Generate ABI](../contracts/README.md#generating-abi)
+Read more here: [packages/contracts/README.md](../contracts/README.md#generating-abi)
 
 ```sh
 pnpm run generate-types

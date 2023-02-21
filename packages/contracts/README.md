@@ -48,6 +48,16 @@ Run the tests:
 pnpm run test
 ```
 
+## Generating ABI
+
+Generate the ABI to the app (`packages/app/src/abi/QFToken.json`).
+
+Read more here: [packages/app/README.md](../app/README.md#development)
+
+```sh
+npx hardhat abi
+```
+
 ## Create Wallets
 
 A number of wallets can be generated and later funded with QF tokens and ETH. This will create a `wallets.json` file in `packages/contracts`.
@@ -103,14 +113,6 @@ ADDRESS                                    | xDAI | QF  | ROLE
 ...
 0x1CF718Cf232B2c91d991b95fD67fA2bEA7133c99 | 0.01 | 100 | receiver
 ...
-```
-
-## Generating ABI
-
-Generate the ABI to the app (`packages/app/src/abi/QFToken.json`)
-
-```sh
-npx hardhat abi
 ```
 
 ## Transfering Payouts
