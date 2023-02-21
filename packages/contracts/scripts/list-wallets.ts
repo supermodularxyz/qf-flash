@@ -13,7 +13,7 @@ async function main() {
   const token = await ethers.getContractAt("QFToken", contractAddress);
   const accounts = await loadWallets();
 
-  console.log(`ADDRESS                                    | xDAI | QF | ROLE`);
+  console.log(`ADDRESS                                    | xDAI | QF  | ROLE`);
 
   for (const role in accounts) {
     for (const address of Object.keys(accounts[role])) {
