@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
     },
     chiado: {
       url: "https://rpc.chiadochain.net",
-      gasPrice: 1000000000,
+      gasPrice: 3000000000,
       accounts: [wallet.privateKey],
     },
   },
