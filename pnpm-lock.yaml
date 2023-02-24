@@ -94,7 +94,7 @@ importers:
       '@openzeppelin/test-helpers': ^0.5.16
       '@typechain/hardhat': ^6.1.5
       '@types/chai': ^4.3.4
-      app: workspace:app
+      app: workspace:*
       chai: ^4.3.7
       dotenv: ^16.0.3
       ethers: ^5.7.2
