@@ -66,6 +66,7 @@ Params:
 
 - `NUM_WALLETS` - how many wallets to generate
 - `RATIO` - ratio between senders and receivers (eg. 20 / 100 = 0.2)
+- `CONTRACT_ADDRESS` - optional to add as a suffix to `wallets_<address>.json`
 
 ```sh
 NUM_WALLETS="100" RATIO="0.2" npx hardhat run scripts/wallets.ts

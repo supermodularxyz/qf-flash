@@ -10,3 +10,4 @@ cache
 artifacts
 
 wallets.json
+wallets*.json

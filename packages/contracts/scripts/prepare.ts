@@ -12,6 +12,7 @@ async function main() {
   const token = await ethers.getContractAt("QFToken", contractAddress);
 
   const accounts = await loadWallets();
+
   await configureRolesAndTranferTokens(accounts, token, owner, {
     eth: "0.01",
   });
