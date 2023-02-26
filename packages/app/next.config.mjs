@@ -7,6 +7,9 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
+  env: {
+    FROM_BLOCK: process.env.NEXT_PUBLIC_FROM_BLOCK || "",
+  },
   reactStrictMode: false,
   /* If trying out the experimental appDir, comment the i18n config out
    * @see https://github.com/vercel/next.js/issues/41980 */

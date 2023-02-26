@@ -9,6 +9,7 @@ export type Scores = {
 };
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
+const FROM_BLOCK = process.env.FROM_BLOCK || 0;
 
 export async function queryTransferEvents(contract: QFToken) {
   const bees: Scores = {};
@@ -16,7 +17,7 @@ export async function queryTransferEvents(contract: QFToken) {
 
   await contract
     // Fetch all Transfer events
-    .queryFilter(contract.filters.Transfer())
+    .queryFilter(contract.filters.Transfer(), Number(FROM_BLOCK))
     .then((events) =>
       Promise.all(
         events
